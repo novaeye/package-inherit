@@ -1,12 +1,19 @@
 import fs from "fs";
 import path from "path";
 import { getPackageInfos } from "workspace-tools/lib/getPackageInfos";
+import { getWorkspacePackageInfo } from "workspace-tools/lib/workspaces/getWorkspacePackageInfo";
 import { PackageInfos } from "workspace-tools/lib/types/PackageInfo";
 import { InheritsInfo } from "./InheritsInfo";
 import parsePackageName from "parse-package-name";
 
 export function generateInheritedPackageJson(cwd: string) {
   const allPackages = getPackageInfos(cwd);
+
+  const [rootPackageInfo] = getWorkspacePackageInfo([cwd]);
+  if (rootPackageInfo) {
+    allPackages[rootPackageInfo.name] = rootPackageInfo.packageJson;
+  }
+
   const modifiedPackages: string[] = [];
   const keys = ["devDependencies", "dependencies", "scripts"];
 
@@ -68,6 +75,7 @@ function shouldUpdate(mine: any, theirs: any) {
   }
 
   let result = false;
+  if (!mine) mine = {};
 
   for (const [key, value] of Object.entries(theirs)) {
     if (mine[key] !== value) {

@@ -2379,7 +2379,7 @@ const processFn = (fn, options, proxy, unwrapped) => function (...arguments_) {
 
 const filterCache = new WeakMap();
 
-var D__git_packageInherit_node_modules_pify = (input, options) => {
+var pify = (input, options) => {
 	options = {
 		exclude: [/.+(?:Sync|Stream)$/],
 		errorFirst: true,
@@ -6308,11 +6308,11 @@ var jsYaml = {
 	addConstructor: addConstructor
 };
 
-var D__git_packageInherit_node_modules_jsYaml = jsYaml;
+var jsYaml$1 = jsYaml;
 
-const parse$1 = data => D__git_packageInherit_node_modules_jsYaml.safeLoad(stripBom(data));
+const parse$1 = data => jsYaml$1.safeLoad(stripBom(data));
 
-const readYamlFile = fp => D__git_packageInherit_node_modules_pify(gracefulFs.readFile)(fp, 'utf8').then(data => parse$1(data));
+const readYamlFile = fp => pify(gracefulFs.readFile)(fp, 'utf8').then(data => parse$1(data));
 
 var readYamlFile_1 = readYamlFile;
 var _default$3 = readYamlFile;
@@ -6335,7 +6335,7 @@ var arrayUnion = (...arguments_) => {
 const PassThrough = stream_1__default['default'].PassThrough;
 const slice = Array.prototype.slice;
 
-var D__git_packageInherit_node_modules_merge2 = merge2;
+var merge2_1 = merge2;
 
 function merge2 () {
   const streamsQueue = [];
@@ -6564,7 +6564,7 @@ exports.removeLeadingDotSegment = removeLeadingDotSegment;
  * Licensed under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_isExtglob = function isExtglob(str) {
+var isExtglob = function isExtglob(str) {
   if (typeof str !== 'string' || str === '') {
     return false;
   }
@@ -6590,12 +6590,12 @@ var chars = { '{': '}', '(': ')', '[': ']'};
 var strictRegex = /\\(.)|(^!|\*|[\].+)]\?|\[[^\\\]]+\]|\{[^\\}]+\}|\(\?[:!=][^\\)]+\)|\([^|]+\|[^\\)]+\))/;
 var relaxedRegex = /\\(.)|(^!|[*?{}()[\]]|\(\?)/;
 
-var D__git_packageInherit_node_modules_isGlob = function isGlob(str, options) {
+var isGlob = function isGlob(str, options) {
   if (typeof str !== 'string' || str === '') {
     return false;
   }
 
-  if (D__git_packageInherit_node_modules_isExtglob(str)) {
+  if (isExtglob(str)) {
     return true;
   }
 
@@ -6641,7 +6641,7 @@ var escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
  * @param {Object} opts
  * @param {boolean} [opts.flipBackslashes=true]
  */
-var D__git_packageInherit_node_modules_globParent = function globParent(str, opts) {
+var globParent = function globParent(str, opts) {
   var options = Object.assign({ flipBackslashes: true }, opts);
 
   // flip windows path separators
@@ -6660,7 +6660,7 @@ var D__git_packageInherit_node_modules_globParent = function globParent(str, opt
   // remove path parts that are globby
   do {
     str = pathPosixDirname(str);
-  } while (D__git_packageInherit_node_modules_isGlob(str) || globby.test(str));
+  } while (isGlob(str) || globby.test(str));
 
   // remove escape chars and return result
   return str.replace(escaped, '$1');
@@ -6815,7 +6815,7 @@ var stringify = (ast, options = {}) => {
  * Released under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_fastGlob_node_modules_isNumber = function(num) {
+var isNumber = function(num) {
   if (typeof num === 'number') {
     return num - num === 0;
   }
@@ -6826,7 +6826,7 @@ var D__git_packageInherit_node_modules_fastGlob_node_modules_isNumber = function
 };
 
 const toRegexRange = (min, max, options) => {
-  if (D__git_packageInherit_node_modules_fastGlob_node_modules_isNumber(min) === false) {
+  if (isNumber(min) === false) {
     throw new TypeError('toRegexRange: expected the first argument to be a number');
   }
 
@@ -6834,7 +6834,7 @@ const toRegexRange = (min, max, options) => {
     return String(min);
   }
 
-  if (D__git_packageInherit_node_modules_fastGlob_node_modules_isNumber(max) === false) {
+  if (isNumber(max) === false) {
     throw new TypeError('toRegexRange: expected the second argument to be a number.');
   }
 
@@ -7101,7 +7101,7 @@ toRegexRange.clearCache = () => (toRegexRange.cache = {});
  * Expose `toRegexRange`
  */
 
-var D__git_packageInherit_node_modules_fastGlob_node_modules_toRegexRange = toRegexRange;
+var toRegexRange_1 = toRegexRange;
 
 const isObject$1 = val => val !== null && typeof val === 'object' && !Array.isArray(val);
 
@@ -7113,7 +7113,7 @@ const isValidValue = value => {
   return typeof value === 'number' || (typeof value === 'string' && value !== '');
 };
 
-const isNumber = num => Number.isInteger(+num);
+const isNumber$1 = num => Number.isInteger(+num);
 
 const zeros = input => {
   let value = `${input}`;
@@ -7185,7 +7185,7 @@ const toSequence = (parts, options) => {
 
 const toRange = (a, b, isNumbers, options) => {
   if (isNumbers) {
-    return D__git_packageInherit_node_modules_fastGlob_node_modules_toRegexRange(a, b, { wrap: false, ...options });
+    return toRegexRange_1(a, b, { wrap: false, ...options });
   }
 
   let start = String.fromCharCode(a);
@@ -7201,7 +7201,7 @@ const toRegex = (start, end, options) => {
     let prefix = options.capture ? '' : '?:';
     return wrap ? `(${prefix}${start.join('|')})` : start.join('|');
   }
-  return D__git_packageInherit_node_modules_fastGlob_node_modules_toRegexRange(start, end, options);
+  return toRegexRange_1(start, end, options);
 };
 
 const rangeError = (...args) => {
@@ -7273,7 +7273,7 @@ const fillNumbers = (start, end, step = 1, options = {}) => {
 };
 
 const fillLetters = (start, end, step = 1, options = {}) => {
-  if ((!isNumber(start) && start.length > 1) || (!isNumber(end) && end.length > 1)) {
+  if ((!isNumber$1(start) && start.length > 1) || (!isNumber$1(end) && end.length > 1)) {
     return invalidRange(start, end, options);
   }
 
@@ -7327,19 +7327,19 @@ const fill = (start, end, step, options = {}) => {
   if (opts.capture === true) opts.wrap = true;
   step = step || opts.step || 1;
 
-  if (!isNumber(step)) {
+  if (!isNumber$1(step)) {
     if (step != null && !isObject$1(step)) return invalidStep(step, opts);
     return fill(start, end, 1, step);
   }
 
-  if (isNumber(start) && isNumber(end)) {
+  if (isNumber$1(start) && isNumber$1(end)) {
     return fillNumbers(start, end, step, opts);
   }
 
   return fillLetters(start, end, Math.max(Math.abs(step), 1), opts);
 };
 
-var D__git_packageInherit_node_modules_fastGlob_node_modules_fillRange = fill;
+var fillRange = fill;
 
 const compile = (ast, options = {}) => {
   let walk = (node, parent = {}) => {
@@ -7374,7 +7374,7 @@ const compile = (ast, options = {}) => {
 
     if (node.nodes && node.ranges > 0) {
       let args = utils.reduce(node.nodes);
-      let range = D__git_packageInherit_node_modules_fastGlob_node_modules_fillRange(...args, { ...options, wrap: false, toRegex: true });
+      let range = fillRange(...args, { ...options, wrap: false, toRegex: true });
 
       if (range.length !== 0) {
         return args.length > 1 && range.length > 1 ? `(${range})` : range;
@@ -7451,7 +7451,7 @@ const expand = (ast, options = {}) => {
         throw new RangeError('expanded array length exceeds range limit. Use options.rangeLimit to increase or disable the limit.');
       }
 
-      let range = D__git_packageInherit_node_modules_fastGlob_node_modules_fillRange(...args, options);
+      let range = fillRange(...args, options);
       if (range.length === 0) {
         range = stringify(node, options);
       }
@@ -8047,7 +8047,7 @@ braces.create = (input, options = {}) => {
  * Expose "braces"
  */
 
-var D__git_packageInherit_node_modules_fastGlob_node_modules_braces = braces;
+var braces_1 = braces;
 
 const WIN_SLASH = '\\\\/';
 const WIN_NO_SLASH = `[^${WIN_SLASH}]`;
@@ -10080,7 +10080,7 @@ picomatch.constants = constants$1;
 
 var picomatch_1 = picomatch;
 
-var D__git_packageInherit_node_modules_picomatch = picomatch_1;
+var picomatch$1 = picomatch_1;
 
 const isEmptyString = val => typeof val === 'string' && (val === '' || val === './');
 
@@ -10119,7 +10119,7 @@ const micromatch = (list, patterns, options) => {
   };
 
   for (let i = 0; i < patterns.length; i++) {
-    let isMatch = D__git_packageInherit_node_modules_picomatch(String(patterns[i]), { ...options, onResult }, true);
+    let isMatch = picomatch$1(String(patterns[i]), { ...options, onResult }, true);
     let negated = isMatch.state.negated || isMatch.state.negatedExtglob;
     if (negated) negatives++;
 
@@ -10179,7 +10179,7 @@ micromatch.match = micromatch;
  * @api public
  */
 
-micromatch.matcher = (pattern, options) => D__git_packageInherit_node_modules_picomatch(pattern, options);
+micromatch.matcher = (pattern, options) => picomatch$1(pattern, options);
 
 /**
  * Returns true if **any** of the given glob `patterns` match the specified `string`.
@@ -10198,7 +10198,7 @@ micromatch.matcher = (pattern, options) => D__git_packageInherit_node_modules_pi
  * @api public
  */
 
-micromatch.isMatch = (str, patterns, options) => D__git_packageInherit_node_modules_picomatch(patterns, options)(str);
+micromatch.isMatch = (str, patterns, options) => picomatch$1(patterns, options)(str);
 
 /**
  * Backwards compatibility
@@ -10338,7 +10338,7 @@ micromatch.some = (list, patterns, options) => {
   let items = [].concat(list);
 
   for (let pattern of [].concat(patterns)) {
-    let isMatch = D__git_packageInherit_node_modules_picomatch(String(pattern), options);
+    let isMatch = picomatch$1(String(pattern), options);
     if (items.some(item => isMatch(item))) {
       return true;
     }
@@ -10374,7 +10374,7 @@ micromatch.every = (list, patterns, options) => {
   let items = [].concat(list);
 
   for (let pattern of [].concat(patterns)) {
-    let isMatch = D__git_packageInherit_node_modules_picomatch(String(pattern), options);
+    let isMatch = picomatch$1(String(pattern), options);
     if (!items.every(item => isMatch(item))) {
       return false;
     }
@@ -10414,7 +10414,7 @@ micromatch.all = (str, patterns, options) => {
     throw new TypeError(`Expected a string: "${util__default['default'].inspect(str)}"`);
   }
 
-  return [].concat(patterns).every(p => D__git_packageInherit_node_modules_picomatch(p, options)(str));
+  return [].concat(patterns).every(p => picomatch$1(p, options)(str));
 };
 
 /**
@@ -10438,7 +10438,7 @@ micromatch.all = (str, patterns, options) => {
 
 micromatch.capture = (glob, input, options) => {
   let posix = utils$1.isWindows(options);
-  let regex = D__git_packageInherit_node_modules_picomatch.makeRe(String(glob), { ...options, capture: true });
+  let regex = picomatch$1.makeRe(String(glob), { ...options, capture: true });
   let match = regex.exec(posix ? utils$1.toPosixSlashes(input) : input);
 
   if (match) {
@@ -10462,7 +10462,7 @@ micromatch.capture = (glob, input, options) => {
  * @api public
  */
 
-micromatch.makeRe = (...args) => D__git_packageInherit_node_modules_picomatch.makeRe(...args);
+micromatch.makeRe = (...args) => picomatch$1.makeRe(...args);
 
 /**
  * Scan a glob pattern to separate the pattern into segments. Used
@@ -10478,7 +10478,7 @@ micromatch.makeRe = (...args) => D__git_packageInherit_node_modules_picomatch.ma
  * @api public
  */
 
-micromatch.scan = (...args) => D__git_packageInherit_node_modules_picomatch.scan(...args);
+micromatch.scan = (...args) => picomatch$1.scan(...args);
 
 /**
  * Parse a glob pattern to create the source string for a regular
@@ -10497,8 +10497,8 @@ micromatch.scan = (...args) => D__git_packageInherit_node_modules_picomatch.scan
 micromatch.parse = (patterns, options) => {
   let res = [];
   for (let pattern of [].concat(patterns || [])) {
-    for (let str of D__git_packageInherit_node_modules_fastGlob_node_modules_braces(String(pattern), options)) {
-      res.push(D__git_packageInherit_node_modules_picomatch.parse(str, options));
+    for (let str of braces_1(String(pattern), options)) {
+      res.push(picomatch$1.parse(str, options));
     }
   }
   return res;
@@ -10526,7 +10526,7 @@ micromatch.braces = (pattern, options) => {
   if ((options && options.nobrace === true) || !/\{.*\}/.test(pattern)) {
     return [pattern];
   }
-  return D__git_packageInherit_node_modules_fastGlob_node_modules_braces(pattern, options);
+  return braces_1(pattern, options);
 };
 
 /**
@@ -10542,7 +10542,7 @@ micromatch.braceExpand = (pattern, options) => {
  * Expose micromatch
  */
 
-var D__git_packageInherit_node_modules_fastGlob_node_modules_micromatch = micromatch;
+var micromatch_1 = micromatch;
 
 var pattern = createCommonjsModule(function (module, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -10615,7 +10615,7 @@ function getPositivePatterns(patterns) {
 }
 exports.getPositivePatterns = getPositivePatterns;
 function getBaseDirectory(pattern) {
-    return D__git_packageInherit_node_modules_globParent(pattern, { flipBackslashes: false });
+    return globParent(pattern, { flipBackslashes: false });
 }
 exports.getBaseDirectory = getBaseDirectory;
 function hasGlobStar(pattern) {
@@ -10638,14 +10638,14 @@ function expandPatternsWithBraceExpansion(patterns) {
 }
 exports.expandPatternsWithBraceExpansion = expandPatternsWithBraceExpansion;
 function expandBraceExpansion(pattern) {
-    return D__git_packageInherit_node_modules_fastGlob_node_modules_micromatch.braces(pattern, {
+    return micromatch_1.braces(pattern, {
         expand: true,
         nodupes: true
     });
 }
 exports.expandBraceExpansion = expandBraceExpansion;
 function getPatternParts(pattern, options) {
-    let { parts } = D__git_packageInherit_node_modules_picomatch.scan(pattern, Object.assign(Object.assign({}, options), { parts: true }));
+    let { parts } = picomatch$1.scan(pattern, Object.assign(Object.assign({}, options), { parts: true }));
     /**
      * The scan method returns an empty array in some cases.
      * See micromatch/picomatch#58 for more details.
@@ -10665,7 +10665,7 @@ function getPatternParts(pattern, options) {
 }
 exports.getPatternParts = getPatternParts;
 function makeRe(pattern, options) {
-    return D__git_packageInherit_node_modules_fastGlob_node_modules_micromatch.makeRe(pattern, options);
+    return micromatch_1.makeRe(pattern, options);
 }
 exports.makeRe = makeRe;
 function convertPatternsToRe(patterns, options) {
@@ -10683,7 +10683,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.merge = void 0;
 
 function merge(streams) {
-    const mergedStream = D__git_packageInherit_node_modules_merge2(streams);
+    const mergedStream = merge2_1(streams);
     streams.forEach((stream) => {
         stream.once('error', (error) => mergedStream.emit('error', error));
     });
@@ -10915,7 +10915,7 @@ function getSettings(settingsOrOptions = {}) {
 }
 });
 
-var D__git_packageInherit_node_modules_runParallel = runParallel;
+var runParallel_1 = runParallel;
 
 function runParallel (tasks, cb) {
   var results, pending, keys;
@@ -11032,7 +11032,7 @@ function readdirWithFileTypes(directory, settings, callback) {
             return callSuccessCallback(callback, entries);
         }
         const tasks = entries.map((entry) => makeRplTaskEntry(entry, settings));
-        D__git_packageInherit_node_modules_runParallel(tasks, (rplError, rplEntries) => {
+        runParallel_1(tasks, (rplError, rplEntries) => {
             if (rplError !== null) {
                 return callFailureCallback(callback, rplError);
             }
@@ -11067,7 +11067,7 @@ function readdir(directory, settings, callback) {
         const tasks = filepaths.map((filepath) => {
             return (done) => out.stat(filepath, settings.fsStatSettings, done);
         });
-        D__git_packageInherit_node_modules_runParallel(tasks, (rplError, results) => {
+        runParallel_1(tasks, (rplError, results) => {
             if (rplError !== null) {
                 return callFailureCallback(callback, rplError);
             }
@@ -11255,45 +11255,6 @@ function reusify (Constructor) {
 
 var reusify_1 = reusify;
 
-var common$1 = createCommonjsModule(function (module, exports) {
-Object.defineProperty(exports, "__esModule", { value: true });
-function isFatalError(settings, error) {
-    if (settings.errorFilter === null) {
-        return true;
-    }
-    return !settings.errorFilter(error);
-}
-exports.isFatalError = isFatalError;
-function isAppliedFilter(filter, value) {
-    return filter === null || filter(value);
-}
-exports.isAppliedFilter = isAppliedFilter;
-function replacePathSegmentSeparator(filepath, separator) {
-    return filepath.split(/[\\/]/).join(separator);
-}
-exports.replacePathSegmentSeparator = replacePathSegmentSeparator;
-function joinPathSegments(a, b, separator) {
-    if (a === '') {
-        return b;
-    }
-    return a + separator + b;
-}
-exports.joinPathSegments = joinPathSegments;
-});
-
-var reader = createCommonjsModule(function (module, exports) {
-Object.defineProperty(exports, "__esModule", { value: true });
-
-class Reader {
-    constructor(_root, _settings) {
-        this._root = _root;
-        this._settings = _settings;
-        this._root = common$1.replacePathSegmentSeparator(_root, _settings.pathSegmentSeparator);
-    }
-}
-exports.default = Reader;
-});
-
 function fastqueue (context, worker, concurrency) {
   if (typeof context === 'function') {
     concurrency = worker;
@@ -11476,6 +11437,45 @@ function Task () {
 }
 
 var queue = fastqueue;
+
+var common$1 = createCommonjsModule(function (module, exports) {
+Object.defineProperty(exports, "__esModule", { value: true });
+function isFatalError(settings, error) {
+    if (settings.errorFilter === null) {
+        return true;
+    }
+    return !settings.errorFilter(error);
+}
+exports.isFatalError = isFatalError;
+function isAppliedFilter(filter, value) {
+    return filter === null || filter(value);
+}
+exports.isAppliedFilter = isAppliedFilter;
+function replacePathSegmentSeparator(filepath, separator) {
+    return filepath.split(/[\\/]/).join(separator);
+}
+exports.replacePathSegmentSeparator = replacePathSegmentSeparator;
+function joinPathSegments(a, b, separator) {
+    if (a === '') {
+        return b;
+    }
+    return a + separator + b;
+}
+exports.joinPathSegments = joinPathSegments;
+});
+
+var reader = createCommonjsModule(function (module, exports) {
+Object.defineProperty(exports, "__esModule", { value: true });
+
+class Reader {
+    constructor(_root, _settings) {
+        this._root = _root;
+        this._settings = _settings;
+        this._root = common$1.replacePathSegmentSeparator(_root, _settings.pathSegmentSeparator);
+    }
+}
+exports.default = Reader;
+});
 
 var async$2 = createCommonjsModule(function (module, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -12516,7 +12516,7 @@ const getGlob = (directory, options) => {
 	return [path__default['default'].posix.join(directory, '**')];
 };
 
-var D__git_packageInherit_node_modules_dirGlob = async (input, options) => {
+var dirGlob = async (input, options) => {
 	options = {
 		cwd: process.cwd(),
 		...options
@@ -12548,7 +12548,7 @@ var sync$9 = (input, options) => {
 
 	return [].concat.apply([], globs); // eslint-disable-line prefer-spread
 };
-D__git_packageInherit_node_modules_dirGlob.sync = sync$9;
+dirGlob.sync = sync$9;
 
 // A simple implementation of make-array
 function makeArray (subject) {
@@ -13421,7 +13421,7 @@ const getFilterSync = options => {
 const globToTask = task => glob => {
 	const {options} = task;
 	if (options.ignore && Array.isArray(options.ignore) && options.expandDirectories) {
-		options.ignore = D__git_packageInherit_node_modules_dirGlob.sync(options.ignore);
+		options.ignore = dirGlob.sync(options.ignore);
 	}
 
 	return {
@@ -13441,7 +13441,7 @@ var globby$1 = async (patterns, options) => {
 
 	const getTasks = async () => {
 		const tasks = await Promise.all(globTasks.map(async task => {
-			const globs = await getPattern(task, D__git_packageInherit_node_modules_dirGlob);
+			const globs = await getPattern(task, dirGlob);
 			return Promise.all(globs.map(globToTask(task)));
 		}));
 
@@ -13458,7 +13458,7 @@ var sync$b = (patterns, options) => {
 	const globTasks = generateGlobTasks(patterns, options);
 
 	const tasks = globTasks.reduce((tasks, task) => {
-		const newTask = getPattern(task, D__git_packageInherit_node_modules_dirGlob.sync).map(globToTask(task));
+		const newTask = getPattern(task, dirGlob.sync).map(globToTask(task));
 		return tasks.concat(newTask);
 	}, []);
 
@@ -13474,7 +13474,7 @@ var stream$4 = (patterns, options) => {
 	const globTasks = generateGlobTasks(patterns, options);
 
 	const tasks = globTasks.reduce((tasks, task) => {
-		const newTask = getPattern(task, D__git_packageInherit_node_modules_dirGlob.sync).map(globToTask(task));
+		const newTask = getPattern(task, dirGlob.sync).map(globToTask(task));
 		return tasks.concat(newTask);
 	}, []);
 
@@ -13482,7 +13482,7 @@ var stream$4 = (patterns, options) => {
 	const filterStream = new FilterStream$1(p => !filter(p));
 	const uniqueStream = new UniqueStream$1();
 
-	return D__git_packageInherit_node_modules_merge2(tasks.map(task => out$3.stream(task.pattern, task.options)))
+	return merge2_1(tasks.map(task => out$3.stream(task.pattern, task.options)))
 		.pipe(filterStream)
 		.pipe(uniqueStream);
 };
@@ -13632,15 +13632,15 @@ var fromPromise = function (fn) {
   }, 'name', { value: fn.name })
 };
 
-var D__git_packageInherit_node_modules_universalify = {
+var universalify = {
 	fromCallback: fromCallback,
 	fromPromise: fromPromise
 };
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_fs = createCommonjsModule(function (module, exports) {
+var fs_1$2 = createCommonjsModule(function (module, exports) {
 // This is adapted from https://github.com/normalize/mz
 // Copyright (c) 2014-2016 Jonathan Ong me@jongleberry.com and Contributors
-const u = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u = universalify.fromCallback;
 
 
 const api = [
@@ -14187,11 +14187,11 @@ function mkdirsSync (p, opts, made) {
 
 var mkdirsSync_1 = mkdirsSync;
 
-const u = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u = universalify.fromCallback;
 const mkdirs$1 = u(mkdirs_1);
 
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs = {
+var mkdirs_1$1 = {
   mkdirs: mkdirs$1,
   mkdirsSync: mkdirsSync_1,
   // alias
@@ -14201,19 +14201,19 @@ var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtr
   ensureDirSync: mkdirsSync_1
 };
 
-const u$1 = D__git_packageInherit_node_modules_universalify.fromPromise;
+const u$1 = universalify.fromPromise;
 
 
 function pathExists$1 (path) {
-  return D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_fs.access(path).then(() => true).catch(() => false)
+  return fs_1$2.access(path).then(() => true).catch(() => false)
 }
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists = {
+var pathExists_1 = {
   pathExists: u$1(pathExists$1),
-  pathExistsSync: D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_fs.existsSync
+  pathExistsSync: fs_1$2.existsSync
 };
 
-const pathExists$2 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists.pathExists;
+const pathExists$2 = pathExists_1.pathExists;
 
 function copy (src, dest, options, callback) {
   if (typeof options === 'function' && !callback) {
@@ -14252,7 +14252,7 @@ function copy (src, dest, options, callback) {
     pathExists$2(dir, (err, dirExists) => {
       if (err) return callback(err)
       if (dirExists) return ncp_1(src, dest, options, callback)
-      D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirs(dir, err => {
+      mkdirs_1$1.mkdirs(dir, err => {
         if (err) return callback(err)
         ncp_1(src, dest, options, callback);
       });
@@ -14262,8 +14262,8 @@ function copy (src, dest, options, callback) {
 
 var copy_1 = copy;
 
-const u$2 = D__git_packageInherit_node_modules_universalify.fromCallback;
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_copy = {
+const u$2 = universalify.fromCallback;
+var copy$1 = {
   copy: u$2(copy_1)
 };
 
@@ -14351,14 +14351,14 @@ function copySync (src, dest, options) {
   } else if (typeof options.filter === 'function') performCopy = options.filter(src, dest);
 
   if (stats.isFile() && performCopy) {
-    if (!destFolderExists) D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync(destFolder);
+    if (!destFolderExists) mkdirs_1$1.mkdirsSync(destFolder);
     copyFileSync_1(src, dest, {
       overwrite: options.overwrite,
       errorOnExist: options.errorOnExist,
       preserveTimestamps: options.preserveTimestamps
     });
   } else if (stats.isDirectory() && performCopy) {
-    if (!gracefulFs.existsSync(dest)) D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync(dest);
+    if (!gracefulFs.existsSync(dest)) mkdirs_1$1.mkdirsSync(dest);
     const contents = gracefulFs.readdirSync(src);
     contents.forEach(content => {
       const opts = options;
@@ -14373,7 +14373,7 @@ function copySync (src, dest, options) {
 
 var copySync_1 = copySync;
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_copySync = {
+var copySync$1 = {
   copySync: copySync_1
 };
 
@@ -14686,10 +14686,10 @@ function rmkidsSync (p, options) {
 var rimraf_1 = rimraf;
 rimraf.sync = rimrafSync;
 
-const u$3 = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$3 = universalify.fromCallback;
 
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_remove = {
+var remove = {
   remove: u$3(rimraf_1),
   removeSync: rimraf_1.sync
 };
@@ -14827,20 +14827,20 @@ var jsonfile = {
   writeFileSync: writeFileSync
 };
 
-var D__git_packageInherit_node_modules_jsonfile = jsonfile;
+var jsonfile_1 = jsonfile;
 
-const u$4 = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$4 = universalify.fromCallback;
 
 
 var jsonfile$1 = {
   // jsonfile exports
-  readJson: u$4(D__git_packageInherit_node_modules_jsonfile.readFile),
-  readJsonSync: D__git_packageInherit_node_modules_jsonfile.readFileSync,
-  writeJson: u$4(D__git_packageInherit_node_modules_jsonfile.writeFile),
-  writeJsonSync: D__git_packageInherit_node_modules_jsonfile.writeFileSync
+  readJson: u$4(jsonfile_1.readFile),
+  readJsonSync: jsonfile_1.readFileSync,
+  writeJson: u$4(jsonfile_1.writeFile),
+  writeJsonSync: jsonfile_1.writeFileSync
 };
 
-const pathExists$3 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists.pathExists;
+const pathExists$3 = pathExists_1.pathExists;
 
 
 function outputJson (file, data, options, callback) {
@@ -14855,7 +14855,7 @@ function outputJson (file, data, options, callback) {
     if (err) return callback(err)
     if (itDoes) return jsonfile$1.writeJson(file, data, options, callback)
 
-    D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirs(dir, err => {
+    mkdirs_1$1.mkdirs(dir, err => {
       if (err) return callback(err)
       jsonfile$1.writeJson(file, data, options, callback);
     });
@@ -14868,7 +14868,7 @@ function outputJsonSync (file, data, options) {
   const dir = path__default['default'].dirname(file);
 
   if (!gracefulFs.existsSync(dir)) {
-    D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync(dir);
+    mkdirs_1$1.mkdirsSync(dir);
   }
 
   jsonfile$1.writeJsonSync(file, data, options);
@@ -14876,7 +14876,7 @@ function outputJsonSync (file, data, options) {
 
 var outputJsonSync_1 = outputJsonSync;
 
-const u$5 = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$5 = universalify.fromCallback;
 
 
 jsonfile$1.outputJson = u$5(outputJson_1);
@@ -14889,7 +14889,7 @@ jsonfile$1.writeJSONSync = jsonfile$1.writeJsonSync;
 jsonfile$1.readJSON = jsonfile$1.readJson;
 jsonfile$1.readJSONSync = jsonfile$1.readJsonSync;
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_json = jsonfile$1;
+var json$1 = jsonfile$1;
 
 // most of this code was written by Andrew Kelley
 // licensed under the BSD license: see
@@ -14897,12 +14897,12 @@ var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtr
 
 // this needs a cleanup
 
-const u$6 = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$6 = universalify.fromCallback;
 
 
 
-const remove = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_remove.remove;
-const mkdirp = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirs;
+const remove$1 = remove.remove;
+const mkdirp = mkdirs_1$1.mkdirs;
 
 function move (src, dest, options, callback) {
   if (typeof options === 'function') {
@@ -14929,7 +14929,7 @@ function move (src, dest, options, callback) {
         if (!err) return callback()
 
         if (err.code === 'ENOTEMPTY' || err.code === 'EEXIST') {
-          remove(dest, err => {
+          remove$1(dest, err => {
             if (err) return callback(err)
             options.overwrite = false; // just overwriteed it, no need to do it again
             move(src, dest, options, callback);
@@ -14940,7 +14940,7 @@ function move (src, dest, options, callback) {
         // weird Windows shit
         if (err.code === 'EPERM') {
           setTimeout(() => {
-            remove(dest, err => {
+            remove$1(dest, err => {
               if (err) return callback(err)
               options.overwrite = false;
               move(src, dest, options, callback);
@@ -15022,7 +15022,7 @@ function moveDirAcrossDevice (src, dest, overwrite, callback) {
   };
 
   if (overwrite) {
-    remove(dest, err => {
+    remove$1(dest, err => {
       if (err) return callback(err)
       startNcp();
     });
@@ -15033,7 +15033,7 @@ function moveDirAcrossDevice (src, dest, overwrite, callback) {
   function startNcp () {
     ncp_1(src, dest, options, err => {
       if (err) return callback(err)
-      remove(src, callback);
+      remove$1(src, callback);
     });
   }
 }
@@ -15056,13 +15056,13 @@ function isSrcSubdir (src, dest, cb) {
   });
 }
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_move = {
+var move_1 = {
   move: u$6(move)
 };
 
-const copySync$1 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_copySync.copySync;
-const removeSync = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_remove.removeSync;
-const mkdirpSync = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync;
+const copySync$2 = copySync$1.copySync;
+const removeSync = remove.removeSync;
+const mkdirpSync = mkdirs_1$1.mkdirsSync;
 
 
 function moveSync (src, dest, options) {
@@ -15153,7 +15153,7 @@ function moveDirSyncAcrossDevice (src, dest, overwrite) {
   }
 
   function tryCopySync () {
-    copySync$1(src, dest, options);
+    copySync$2(src, dest, options);
     return removeSync(src)
   }
 }
@@ -15171,11 +15171,11 @@ function isSrcSubdir$1 (src, dest) {
   }
 }
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_moveSync = {
+var moveSync_1 = {
   moveSync
 };
 
-const u$7 = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$7 = universalify.fromCallback;
 
 
 
@@ -15184,7 +15184,7 @@ const u$7 = D__git_packageInherit_node_modules_universalify.fromCallback;
 const emptyDir = u$7(function emptyDir (dir, callback) {
   callback = callback || function () {};
   fs__default['default'].readdir(dir, (err, items) => {
-    if (err) return D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirs(dir, callback)
+    if (err) return mkdirs_1$1.mkdirs(dir, callback)
 
     items = items.map(item => path__default['default'].join(dir, item));
 
@@ -15193,7 +15193,7 @@ const emptyDir = u$7(function emptyDir (dir, callback) {
     function deleteItem () {
       const item = items.pop();
       if (!item) return callback()
-      D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_remove.remove(item, err => {
+      remove.remove(item, err => {
         if (err) return callback(err)
         deleteItem();
       });
@@ -15206,27 +15206,27 @@ function emptyDirSync (dir) {
   try {
     items = fs__default['default'].readdirSync(dir);
   } catch (err) {
-    return D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync(dir)
+    return mkdirs_1$1.mkdirsSync(dir)
   }
 
   items.forEach(item => {
     item = path__default['default'].join(dir, item);
-    D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_remove.removeSync(item);
+    remove.removeSync(item);
   });
 }
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_empty = {
+var empty = {
   emptyDirSync,
   emptydirSync: emptyDirSync,
   emptyDir,
   emptydir: emptyDir
 };
 
-const u$8 = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$8 = universalify.fromCallback;
 
 
 
-const pathExists$4 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists.pathExists;
+const pathExists$4 = pathExists_1.pathExists;
 
 function createFile (file, callback) {
   function makeFile () {
@@ -15242,7 +15242,7 @@ function createFile (file, callback) {
     pathExists$4(dir, (err, dirExists) => {
       if (err) return callback(err)
       if (dirExists) return makeFile()
-      D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirs(dir, err => {
+      mkdirs_1$1.mkdirs(dir, err => {
         if (err) return callback(err)
         makeFile();
       });
@@ -15259,7 +15259,7 @@ function createFileSync (file) {
 
   const dir = path__default['default'].dirname(file);
   if (!gracefulFs.existsSync(dir)) {
-    D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync(dir);
+    mkdirs_1$1.mkdirsSync(dir);
   }
 
   gracefulFs.writeFileSync(file, '');
@@ -15270,11 +15270,11 @@ var file = {
   createFileSync
 };
 
-const u$9 = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$9 = universalify.fromCallback;
 
 
 
-const pathExists$5 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists.pathExists;
+const pathExists$5 = pathExists_1.pathExists;
 
 function createLink (srcpath, dstpath, callback) {
   function makeLink (srcpath, dstpath) {
@@ -15297,7 +15297,7 @@ function createLink (srcpath, dstpath, callback) {
       pathExists$5(dir, (err, dirExists) => {
         if (err) return callback(err)
         if (dirExists) return makeLink(srcpath, dstpath)
-        D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirs(dir, err => {
+        mkdirs_1$1.mkdirs(dir, err => {
           if (err) return callback(err)
           makeLink(srcpath, dstpath);
         });
@@ -15320,7 +15320,7 @@ function createLinkSync (srcpath, dstpath, callback) {
   const dir = path__default['default'].dirname(dstpath);
   const dirExists = gracefulFs.existsSync(dir);
   if (dirExists) return gracefulFs.linkSync(srcpath, dstpath)
-  D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync(dir);
+  mkdirs_1$1.mkdirsSync(dir);
 
   return gracefulFs.linkSync(srcpath, dstpath)
 }
@@ -15330,7 +15330,7 @@ var link = {
   createLinkSync
 };
 
-const pathExists$6 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists.pathExists;
+const pathExists$6 = pathExists_1.pathExists;
 
 /**
  * Function that returns two types of paths, one relative to symlink, and one
@@ -15454,12 +15454,12 @@ var symlinkType_1 = {
   symlinkTypeSync
 };
 
-const u$a = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$a = universalify.fromCallback;
 
 
 
-const mkdirs$2 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirs;
-const mkdirsSync$1 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync;
+const mkdirs$2 = mkdirs_1$1.mkdirs;
+const mkdirsSync$1 = mkdirs_1$1.mkdirsSync;
 
 
 const symlinkPaths$1 = symlinkPaths_1.symlinkPaths;
@@ -15469,7 +15469,7 @@ const symlinkPathsSync$1 = symlinkPaths_1.symlinkPathsSync;
 const symlinkType$1 = symlinkType_1.symlinkType;
 const symlinkTypeSync$1 = symlinkType_1.symlinkTypeSync;
 
-const pathExists$7 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists.pathExists;
+const pathExists$7 = pathExists_1.pathExists;
 
 function createSymlink (srcpath, dstpath, type, callback) {
   callback = (typeof type === 'function') ? type : callback;
@@ -15518,7 +15518,7 @@ var symlink = {
   createSymlinkSync
 };
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_ensure = {
+var ensure = {
   // file
   createFile: file.createFile,
   createFileSync: file.createFileSync,
@@ -15536,11 +15536,11 @@ var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtr
   ensureSymlinkSync: symlink.createSymlinkSync
 };
 
-const u$b = D__git_packageInherit_node_modules_universalify.fromCallback;
+const u$b = universalify.fromCallback;
 
 
 
-const pathExists$8 = D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists.pathExists;
+const pathExists$8 = pathExists_1.pathExists;
 
 function outputFile (file, data, encoding, callback) {
   if (typeof encoding === 'function') {
@@ -15553,7 +15553,7 @@ function outputFile (file, data, encoding, callback) {
     if (err) return callback(err)
     if (itDoes) return gracefulFs.writeFile(file, data, encoding, callback)
 
-    D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirs(dir, err => {
+    mkdirs_1$1.mkdirs(dir, err => {
       if (err) return callback(err)
 
       gracefulFs.writeFile(file, data, encoding, callback);
@@ -15566,11 +15566,11 @@ function outputFileSync (file, data, encoding) {
   if (gracefulFs.existsSync(dir)) {
     return gracefulFs.writeFileSync.apply(gracefulFs, arguments)
   }
-  D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs.mkdirsSync(dir);
+  mkdirs_1$1.mkdirsSync(dir);
   gracefulFs.writeFileSync.apply(gracefulFs, arguments);
 }
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_output = {
+var output = {
   outputFile: u$b(outputFile),
   outputFileSync
 };
@@ -15578,21 +15578,21 @@ var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtr
 const fs$2 = {};
 
 // Export graceful-fs:
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_fs);
+assign_1(fs$2, fs_1$2);
 // Export extra methods:
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_copy);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_copySync);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_mkdirs);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_remove);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_json);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_move);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_moveSync);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_empty);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_ensure);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_output);
-assign_1(fs$2, D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib_pathExists);
+assign_1(fs$2, copy$1);
+assign_1(fs$2, copySync$1);
+assign_1(fs$2, mkdirs_1$1);
+assign_1(fs$2, remove);
+assign_1(fs$2, json$1);
+assign_1(fs$2, move_1);
+assign_1(fs$2, moveSync_1);
+assign_1(fs$2, empty);
+assign_1(fs$2, ensure);
+assign_1(fs$2, output);
+assign_1(fs$2, pathExists_1);
 
-var D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib = fs$2;
+var lib = fs$2;
 
 var types = {
   ROOT       : 0,
@@ -15829,7 +15829,7 @@ var positions = {
 	end: end
 };
 
-var D__git_packageInherit_node_modules_ret_lib = function(regexpStr) {
+var lib$1 = function(regexpStr) {
   var i = 0, l, c,
       start = { type: types.ROOT, stack: []},
 
@@ -16105,18 +16105,18 @@ var D__git_packageInherit_node_modules_ret_lib = function(regexpStr) {
 };
 
 var types_1 = types;
-D__git_packageInherit_node_modules_ret_lib.types = types_1;
+lib$1.types = types_1;
 
-var types$1 = D__git_packageInherit_node_modules_ret_lib.types;
+var types$1 = lib$1.types;
 
-var D__git_packageInherit_node_modules_safeRegex = function (re, opts) {
+var safeRegex = function (re, opts) {
     if (!opts) opts = {};
     var replimit = opts.limit === undefined ? 25 : opts.limit;
     
     if (isRegExp$1(re)) re = re.source;
     else if (typeof re !== 'string') re = String(re);
     
-    try { re = D__git_packageInherit_node_modules_ret_lib(re); }
+    try { re = lib$1(re); }
     catch (err) { return false }
     
     var reps = 0;
@@ -16163,7 +16163,7 @@ var isobject = function isObject(val) {
 
 var toString = Object.prototype.toString;
 
-var D__git_packageInherit_node_modules_isDescriptor_node_modules_kindOf = function kindOf(val) {
+var kindOf = function kindOf(val) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
@@ -16293,7 +16293,7 @@ function isBuffer(val) {
 
 var toString$1 = Object.prototype.toString;
 
-var D__git_packageInherit_node_modules_isAccessorDescriptor_node_modules_kindOf = function kindOf(val) {
+var kindOf$1 = function kindOf(val) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
@@ -16435,7 +16435,7 @@ function isAccessorDescriptor(obj, prop) {
     return typeof val !== 'undefined';
   }
 
-  if (D__git_packageInherit_node_modules_isAccessorDescriptor_node_modules_kindOf(obj) !== 'object') {
+  if (kindOf$1(obj) !== 'object') {
     return false;
   }
 
@@ -16459,7 +16459,7 @@ function isAccessorDescriptor(obj, prop) {
       continue;
     }
 
-    if (D__git_packageInherit_node_modules_isAccessorDescriptor_node_modules_kindOf(obj[key]) === accessor[key]) {
+    if (kindOf$1(obj[key]) === accessor[key]) {
       continue;
     }
 
@@ -16478,11 +16478,11 @@ function has(obj, key) {
  * Expose `isAccessorDescriptor`
  */
 
-var D__git_packageInherit_node_modules_isAccessorDescriptor = isAccessorDescriptor;
+var isAccessorDescriptor_1 = isAccessorDescriptor;
 
 var toString$2 = Object.prototype.toString;
 
-var D__git_packageInherit_node_modules_isDataDescriptor_node_modules_kindOf = function kindOf(val) {
+var kindOf$2 = function kindOf(val) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
@@ -16610,7 +16610,7 @@ function isBuffer$2(val) {
   return false;
 }
 
-var D__git_packageInherit_node_modules_isDataDescriptor = function isDataDescriptor(obj, prop) {
+var isDataDescriptor = function isDataDescriptor(obj, prop) {
   // data descriptor properties
   var data = {
     configurable: 'boolean',
@@ -16618,7 +16618,7 @@ var D__git_packageInherit_node_modules_isDataDescriptor = function isDataDescrip
     writable: 'boolean'
   };
 
-  if (D__git_packageInherit_node_modules_isDataDescriptor_node_modules_kindOf(obj) !== 'object') {
+  if (kindOf$2(obj) !== 'object') {
     return false;
   }
 
@@ -16638,7 +16638,7 @@ var D__git_packageInherit_node_modules_isDataDescriptor = function isDataDescrip
       continue;
     }
 
-    if (D__git_packageInherit_node_modules_isDataDescriptor_node_modules_kindOf(obj[key]) === data[key]) {
+    if (kindOf$2(obj[key]) === data[key]) {
       continue;
     }
 
@@ -16649,21 +16649,21 @@ var D__git_packageInherit_node_modules_isDataDescriptor = function isDataDescrip
   return true;
 };
 
-var D__git_packageInherit_node_modules_isDescriptor = function isDescriptor(obj, key) {
-  if (D__git_packageInherit_node_modules_isDescriptor_node_modules_kindOf(obj) !== 'object') {
+var isDescriptor = function isDescriptor(obj, key) {
+  if (kindOf(obj) !== 'object') {
     return false;
   }
   if ('get' in obj) {
-    return D__git_packageInherit_node_modules_isAccessorDescriptor(obj, key);
+    return isAccessorDescriptor_1(obj, key);
   }
-  return D__git_packageInherit_node_modules_isDataDescriptor(obj, key);
+  return isDataDescriptor(obj, key);
 };
 
 var define$1 = (typeof Reflect !== 'undefined' && Reflect.defineProperty)
   ? Reflect.defineProperty
   : Object.defineProperty;
 
-var D__git_packageInherit_node_modules_toRegex_node_modules_defineProperty = function defineProperty(obj, key, val) {
+var defineProperty = function defineProperty(obj, key, val) {
   if (!isobject(obj) && typeof obj !== 'function' && !Array.isArray(obj)) {
     throw new TypeError('expected an object, function, or array');
   }
@@ -16672,7 +16672,7 @@ var D__git_packageInherit_node_modules_toRegex_node_modules_defineProperty = fun
     throw new TypeError('expected "key" to be a string');
   }
 
-  if (D__git_packageInherit_node_modules_isDescriptor(val)) {
+  if (isDescriptor(val)) {
     define$1(obj, key, val);
     return obj;
   }
@@ -16725,7 +16725,7 @@ var isExtendable = function isExtendable(val) {
  * Licensed under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_assignSymbols = function(receiver, objects) {
+var assignSymbols = function(receiver, objects) {
   if (receiver === null || typeof receiver === 'undefined') {
     throw new TypeError('expected first argument to be an object.');
   }
@@ -16757,7 +16757,7 @@ var D__git_packageInherit_node_modules_assignSymbols = function(receiver, object
   return target;
 };
 
-var D__git_packageInherit_node_modules_toRegex_node_modules_extendShallow = Object.assign || function(obj/*, objects*/) {
+var extendShallow = Object.assign || function(obj/*, objects*/) {
   if (obj === null || typeof obj === 'undefined') {
     throw new TypeError('Cannot convert undefined or null to object');
   }
@@ -16771,7 +16771,7 @@ var D__git_packageInherit_node_modules_toRegex_node_modules_extendShallow = Obje
     }
     if (isObject$3(val)) {
       assign$1(obj, val);
-      D__git_packageInherit_node_modules_assignSymbols(obj, val);
+      assignSymbols(obj, val);
     }
   }
   return obj;
@@ -16813,7 +16813,7 @@ var isExtendable$1 = function isExtendable(val) {
   return isPlainObject(val) || typeof val === 'function' || Array.isArray(val);
 };
 
-var D__git_packageInherit_node_modules_regexNot_node_modules_extendShallow = Object.assign || function(obj/*, objects*/) {
+var extendShallow$1 = Object.assign || function(obj/*, objects*/) {
   if (obj === null || typeof obj === 'undefined') {
     throw new TypeError('Cannot convert undefined or null to object');
   }
@@ -16827,7 +16827,7 @@ var D__git_packageInherit_node_modules_regexNot_node_modules_extendShallow = Obj
     }
     if (isObject$4(val)) {
       assign$2(obj, val);
-      D__git_packageInherit_node_modules_assignSymbols(obj, val);
+      assignSymbols(obj, val);
     }
   }
   return obj;
@@ -16903,7 +16903,7 @@ toRegex$1.create = function(pattern, options) {
     throw new TypeError('expected a string');
   }
 
-  var opts = D__git_packageInherit_node_modules_regexNot_node_modules_extendShallow({}, options);
+  var opts = extendShallow$1({}, options);
   if (opts.contains === true) {
     opts.strictNegate = false;
   }
@@ -16920,7 +16920,7 @@ toRegex$1.create = function(pattern, options) {
   }
 
   var res = open + str + close;
-  if (opts.safe === true && D__git_packageInherit_node_modules_safeRegex(res) === false) {
+  if (opts.safe === true && safeRegex(res) === false) {
     throw new Error('potentially unsafe regular expression: ' + res);
   }
 
@@ -16931,7 +16931,7 @@ toRegex$1.create = function(pattern, options) {
  * Expose `toRegex`
  */
 
-var D__git_packageInherit_node_modules_regexNot = toRegex$1;
+var regexNot = toRegex$1;
 
 var MAX_LENGTH$2 = 1024 * 64;
 
@@ -16950,7 +16950,7 @@ var cache = {};
  * @api public
  */
 
-var D__git_packageInherit_node_modules_toRegex = function(patterns, options) {
+var toRegex$2 = function(patterns, options) {
   if (!Array.isArray(patterns)) {
     return makeRe(patterns, options);
   }
@@ -16989,7 +16989,7 @@ function makeRe(pattern, options) {
     }
   }
 
-  var opts = D__git_packageInherit_node_modules_toRegex_node_modules_extendShallow({}, options);
+  var opts = extendShallow({}, options);
   if (opts.contains === true) {
     if (opts.negate === true) {
       opts.strictNegate = false;
@@ -17014,13 +17014,13 @@ function makeRe(pattern, options) {
 
   try {
     if (opts.negate || typeof opts.strictNegate === 'boolean') {
-      pattern = D__git_packageInherit_node_modules_regexNot.create(pattern, opts);
+      pattern = regexNot.create(pattern, opts);
     }
 
     var str = open + '(?:' + pattern + ')' + close;
     regex = new RegExp(str, flags);
 
-    if (opts.safe === true && D__git_packageInherit_node_modules_safeRegex(regex) === false) {
+    if (opts.safe === true && safeRegex(regex) === false) {
       throw new Error('potentially unsafe regular expression: ' + regex.source);
     }
 
@@ -17053,10 +17053,10 @@ function makeRe(pattern, options) {
  */
 
 function memoize(regex, key, pattern, options) {
-  D__git_packageInherit_node_modules_toRegex_node_modules_defineProperty(regex, 'cached', true);
-  D__git_packageInherit_node_modules_toRegex_node_modules_defineProperty(regex, 'pattern', pattern);
-  D__git_packageInherit_node_modules_toRegex_node_modules_defineProperty(regex, 'options', options);
-  D__git_packageInherit_node_modules_toRegex_node_modules_defineProperty(regex, 'key', key);
+  defineProperty(regex, 'cached', true);
+  defineProperty(regex, 'pattern', pattern);
+  defineProperty(regex, 'options', options);
+  defineProperty(regex, 'key', key);
   cache[key] = regex;
 }
 
@@ -17082,9 +17082,9 @@ function createKey(pattern, options) {
  */
 
 var makeRe_1 = makeRe;
-D__git_packageInherit_node_modules_toRegex.makeRe = makeRe_1;
+toRegex$2.makeRe = makeRe_1;
 
-var D__git_packageInherit_node_modules_arrayUnique = createCommonjsModule(function (module) {
+var arrayUnique = createCommonjsModule(function (module) {
 
 module.exports = function unique(arr) {
   if (!Array.isArray(arr)) {
@@ -17129,19 +17129,19 @@ module.exports.immutable = function uniqueImmutable(arr) {
  * Licensed under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_isExtendable = function isExtendable(val) {
+var isExtendable$2 = function isExtendable(val) {
   return typeof val !== 'undefined' && val !== null
     && (typeof val === 'object' || typeof val === 'function');
 };
 
-var D__git_packageInherit_node_modules_extendShallow = function extend(o/*, objects*/) {
-  if (!D__git_packageInherit_node_modules_isExtendable(o)) { o = {}; }
+var extendShallow$2 = function extend(o/*, objects*/) {
+  if (!isExtendable$2(o)) { o = {}; }
 
   var len = arguments.length;
   for (var i = 1; i < len; i++) {
     var obj = arguments[i];
 
-    if (D__git_packageInherit_node_modules_isExtendable(obj)) {
+    if (isExtendable$2(obj)) {
       assign$3(o, obj);
     }
   }
@@ -17164,11 +17164,11 @@ function hasOwn$2(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
-var isExtendable$2 = function isExtendable(val) {
+var isExtendable$3 = function isExtendable(val) {
   return isPlainObject(val) || typeof val === 'function' || Array.isArray(val);
 };
 
-var D__git_packageInherit_node_modules_splitString_node_modules_extendShallow = Object.assign || function(obj/*, objects*/) {
+var extendShallow$3 = Object.assign || function(obj/*, objects*/) {
   if (obj === null || typeof obj === 'undefined') {
     throw new TypeError('Cannot convert undefined or null to object');
   }
@@ -17182,7 +17182,7 @@ var D__git_packageInherit_node_modules_splitString_node_modules_extendShallow = 
     }
     if (isObject$5(val)) {
       assign$4(obj, val);
-      D__git_packageInherit_node_modules_assignSymbols(obj, val);
+      assignSymbols(obj, val);
     }
   }
   return obj;
@@ -17209,7 +17209,7 @@ function toObject$2(str) {
 }
 
 function isObject$5(val) {
-  return (val && typeof val === 'object') || isExtendable$2(val);
+  return (val && typeof val === 'object') || isExtendable$3(val);
 }
 
 /**
@@ -17220,7 +17220,7 @@ function hasOwn$3(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
-var D__git_packageInherit_node_modules_splitString = function(str, options, fn) {
+var splitString = function(str, options, fn) {
   if (typeof str !== 'string') {
     throw new TypeError('expected a string');
   }
@@ -17235,7 +17235,7 @@ var D__git_packageInherit_node_modules_splitString = function(str, options, fn) 
     options = { sep: options };
   }
 
-  var opts = D__git_packageInherit_node_modules_splitString_node_modules_extendShallow({sep: '.'}, options);
+  var opts = extendShallow$3({sep: '.'}, options);
   var quotes = opts.quotes || ['"', "'", '`'];
   var brackets;
 
@@ -17388,7 +17388,7 @@ function keepEscaping(opts, str, idx) {
  * Released under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_arrFlatten = function (arr) {
+var arrFlatten = function (arr) {
   return flat(arr, []);
 };
 
@@ -17411,7 +17411,7 @@ function flat(arr, res) {
 
 // The _isBuffer check is for Safari 5-7 support, because it's missing
 // Object.prototype.constructor. Remove this eventually
-var D__git_packageInherit_node_modules_isBuffer = function (obj) {
+var isBuffer_1 = function (obj) {
   return obj != null && (isBuffer$3(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
 };
 
@@ -17433,7 +17433,7 @@ var toString$3 = Object.prototype.toString;
  * @return {*} Native javascript type
  */
 
-var D__git_packageInherit_node_modules_kindOf = function kindOf(val) {
+var kindOf$3 = function kindOf(val) {
   // primitivies
   if (typeof val === 'undefined') {
     return 'undefined';
@@ -17486,7 +17486,7 @@ var D__git_packageInherit_node_modules_kindOf = function kindOf(val) {
   }
 
   // buffer
-  if (D__git_packageInherit_node_modules_isBuffer(val)) {
+  if (isBuffer_1(val)) {
     return 'buffer';
   }
 
@@ -17540,8 +17540,8 @@ var D__git_packageInherit_node_modules_kindOf = function kindOf(val) {
   return 'object';
 };
 
-var D__git_packageInherit_node_modules_isNumber = function isNumber(num) {
-  var type = D__git_packageInherit_node_modules_kindOf(num);
+var isNumber$2 = function isNumber(num) {
+  var type = kindOf$3(num);
 
   if (type === 'string') {
     if (!num.trim()) return false;
@@ -17570,7 +17570,7 @@ var cache$1;
  * Expose `repeat`
  */
 
-var D__git_packageInherit_node_modules_repeatString = repeat$1;
+var repeatString = repeat$1;
 
 /**
  * Repeat the given `string` the specified `number`
@@ -17624,7 +17624,7 @@ function repeat$1(str, num) {
 var cache$2 = {};
 
 function toRegexRange$1(min, max, options) {
-  if (D__git_packageInherit_node_modules_isNumber(min) === false) {
+  if (isNumber$2(min) === false) {
     throw new RangeError('toRegexRange: first argument is invalid.');
   }
 
@@ -17632,7 +17632,7 @@ function toRegexRange$1(min, max, options) {
     return String(min);
   }
 
-  if (D__git_packageInherit_node_modules_isNumber(max) === false) {
+  if (isNumber$2(max) === false) {
     throw new RangeError('toRegexRange: second argument is invalid.');
   }
 
@@ -17859,7 +17859,7 @@ function contains$1(arr, key, val) {
 }
 
 function countNines$1(min, len) {
-  return String(min).slice(0, -len) + D__git_packageInherit_node_modules_repeatString('9', len);
+  return String(min).slice(0, -len) + repeatString('9', len);
 }
 
 function countZeros$1(integer, zeros) {
@@ -17903,7 +17903,7 @@ function padZeros$1(val, tok) {
  * Expose `toRegexRange`
  */
 
-var D__git_packageInherit_node_modules_toRegexRange = toRegexRange$1;
+var toRegexRange_1$1 = toRegexRange$1;
 
 /**
  * Return a range of numbers or letters.
@@ -17915,7 +17915,7 @@ var D__git_packageInherit_node_modules_toRegexRange = toRegexRange$1;
  * @return {Array}
  */
 
-function fillRange(start, stop, step, options) {
+function fillRange$1(start, stop, step, options) {
   if (typeof start === 'undefined') {
     return [];
   }
@@ -17923,7 +17923,7 @@ function fillRange(start, stop, step, options) {
   if (typeof stop === 'undefined' || start === stop) {
     // special case, for handling negative zero
     var isString = typeof start === 'string';
-    if (D__git_packageInherit_node_modules_isNumber(start) && !toNumber(start)) {
+    if (isNumber$2(start) && !toNumber(start)) {
       return [isString ? '0' : 0];
     }
     return [start];
@@ -17938,7 +17938,7 @@ function fillRange(start, stop, step, options) {
     options = { transform: options };
   }
 
-  var opts = D__git_packageInherit_node_modules_extendShallow({step: step}, options);
+  var opts = extendShallow$2({step: step}, options);
   if (opts.step && !isValidNumber(opts.step)) {
     if (opts.strictRanges === true) {
       throw new TypeError('expected options.step to be a number');
@@ -18022,11 +18022,11 @@ function expand$1(start, stop, options) {
 
 function toRange$1(a, b, start, stop, options) {
   if (options.isPadded) {
-    return D__git_packageInherit_node_modules_toRegexRange(start, stop, options);
+    return toRegexRange_1$1(start, stop, options);
   }
 
   if (options.isNumber) {
-    return D__git_packageInherit_node_modules_toRegexRange(Math.min(a, b), Math.max(a, b), options);
+    return toRegexRange_1$1(Math.min(a, b), Math.max(a, b), options);
   }
 
   var start = String.fromCharCode(Math.min(a, b));
@@ -18062,7 +18062,7 @@ function zeros$1(val, options) {
       str = str.slice(1);
     }
     var diff = options.maxLength - len;
-    var pad = D__git_packageInherit_node_modules_repeatString('0', diff);
+    var pad = repeatString('0', diff);
     val = (dash + pad + str);
   }
   if (options.stringify) {
@@ -18089,7 +18089,7 @@ function isValidLetter(ch) {
 }
 
 function isValidNumber(n) {
-  return D__git_packageInherit_node_modules_isNumber(n) && !/\./.test(n);
+  return isNumber$2(n) && !/\./.test(n);
 }
 
 /**
@@ -18097,7 +18097,7 @@ function isValidNumber(n) {
  * @type {Function}
  */
 
-var D__git_packageInherit_node_modules_fillRange = fillRange;
+var fillRange_1 = fillRange$1;
 
 /*!
  * repeat-element <https://github.com/jonschlinkert/repeat-element>
@@ -18106,7 +18106,7 @@ var D__git_packageInherit_node_modules_fillRange = fillRange;
  * Licensed under the MIT license.
  */
 
-var D__git_packageInherit_node_modules_repeatElement = function repeat(ele, num) {
+var repeatElement = function repeat(ele, num) {
   var arr = new Array(num);
 
   for (var i = 0; i < num; i++) {
@@ -18125,12 +18125,12 @@ var utils = module.exports;
  * Module dependencies
  */
 
-utils.extend = D__git_packageInherit_node_modules_extendShallow;
-utils.flatten = D__git_packageInherit_node_modules_arrFlatten;
+utils.extend = extendShallow$2;
+utils.flatten = arrFlatten;
 utils.isObject = isobject;
-utils.fillRange = D__git_packageInherit_node_modules_fillRange;
-utils.repeat = D__git_packageInherit_node_modules_repeatElement;
-utils.unique = D__git_packageInherit_node_modules_arrayUnique;
+utils.fillRange = fillRange_1;
+utils.repeat = repeatElement;
+utils.unique = arrayUnique;
 
 utils.define = function(obj, key, val) {
   Object.defineProperty(obj, key, {
@@ -18249,7 +18249,7 @@ utils.split = function(str, options) {
   if (opts.unescape === false) {
     opts.keepEscaping = true;
   }
-  return D__git_packageInherit_node_modules_splitString(str, opts, utils.escapeBrackets(opts));
+  return splitString(str, opts, utils.escapeBrackets(opts));
 };
 
 /**
@@ -18734,7 +18734,7 @@ function hasQueue(node) {
   return Array.isArray(node.queue) && node.queue.length;
 }
 
-var D__git_packageInherit_node_modules_snapdragonNode_node_modules_defineProperty = function defineProperty(obj, prop, val) {
+var defineProperty$1 = function defineProperty(obj, prop, val) {
   if (typeof obj !== 'object' && typeof obj !== 'function') {
     throw new TypeError('expected an object or function.');
   }
@@ -18743,7 +18743,7 @@ var D__git_packageInherit_node_modules_snapdragonNode_node_modules_definePropert
     throw new TypeError('expected `prop` to be a string.');
   }
 
-  if (D__git_packageInherit_node_modules_isDescriptor(val) && ('set' in val || 'get' in val)) {
+  if (isDescriptor(val) && ('set' in val || 'get' in val)) {
     return Object.defineProperty(obj, prop, val);
   }
 
@@ -18755,7 +18755,7 @@ var D__git_packageInherit_node_modules_snapdragonNode_node_modules_definePropert
   });
 };
 
-var D__git_packageInherit_node_modules_snapdragonUtil = createCommonjsModule(function (module) {
+var snapdragonUtil = createCommonjsModule(function (module) {
 
 
 var utils = module.exports;
@@ -18775,7 +18775,7 @@ var utils = module.exports;
  */
 
 utils.isNode = function(node) {
-  return D__git_packageInherit_node_modules_kindOf(node) === 'object' && node.isNode === true;
+  return kindOf$3(node) === 'object' && node.isNode === true;
 };
 
 /**
@@ -19198,7 +19198,7 @@ utils.removeNode = function(parent, node) {
 
 utils.isType = function(node, type) {
   assert(utils.isNode(node), 'expected node to be an instance of Node');
-  switch (D__git_packageInherit_node_modules_kindOf(type)) {
+  switch (kindOf$3(type)) {
     case 'array':
       var types = type.slice();
       for (var i = 0; i < types.length; i++) {
@@ -19638,7 +19638,7 @@ utils.isInside = function(state, node, type) {
     return (parent && parent.type === type) || utils.isInsideType(state, type);
   }
 
-  if (D__git_packageInherit_node_modules_kindOf(type) === 'regexp') {
+  if (kindOf$3(type) === 'regexp') {
     if (parent && parent.type && type.test(parent.type)) {
       return true;
     }
@@ -19729,7 +19729,7 @@ utils.trim = function(str) {
  */
 
 function isObject(val) {
-  return D__git_packageInherit_node_modules_kindOf(val) === 'object';
+  return kindOf$3(val) === 'object';
 }
 
 /**
@@ -19776,7 +19776,7 @@ function assert(val, message) {
 }
 });
 
-var D__git_packageInherit_node_modules_snapdragonNode = createCommonjsModule(function (module, exports) {
+var snapdragonNode = createCommonjsModule(function (module, exports) {
 
 
 
@@ -19803,9 +19803,9 @@ function Node(val, type, parent) {
     type = null;
   }
 
-  D__git_packageInherit_node_modules_snapdragonNode_node_modules_defineProperty(this, 'parent', parent);
-  D__git_packageInherit_node_modules_snapdragonNode_node_modules_defineProperty(this, 'isNode', true);
-  D__git_packageInherit_node_modules_snapdragonNode_node_modules_defineProperty(this, 'expect', null);
+  defineProperty$1(this, 'parent', parent);
+  defineProperty$1(this, 'isNode', true);
+  defineProperty$1(this, 'expect', null);
 
   if (typeof type !== 'string' && isobject(val)) {
     lazyKeys();
@@ -19837,7 +19837,7 @@ function Node(val, type, parent) {
  */
 
 Node.isNode = function(node) {
-  return D__git_packageInherit_node_modules_snapdragonUtil.isNode(node);
+  return snapdragonUtil.isNode(node);
 };
 
 /**
@@ -19856,7 +19856,7 @@ Node.isNode = function(node) {
  */
 
 Node.prototype.define = function(name, val) {
-  D__git_packageInherit_node_modules_snapdragonNode_node_modules_defineProperty(this, name, val);
+  defineProperty$1(this, name, val);
   return this;
 };
 
@@ -19876,7 +19876,7 @@ Node.prototype.define = function(name, val) {
  */
 
 Node.prototype.isEmpty = function(fn) {
-  return D__git_packageInherit_node_modules_snapdragonUtil.isEmpty(this, fn);
+  return snapdragonUtil.isEmpty(this, fn);
 };
 
 /**
@@ -19895,7 +19895,7 @@ Node.prototype.isEmpty = function(fn) {
 
 Node.prototype.push = function(node) {
   assert(Node.isNode(node), 'expected node to be an instance of Node');
-  D__git_packageInherit_node_modules_snapdragonNode_node_modules_defineProperty(node, 'parent', this);
+  defineProperty$1(node, 'parent', this);
 
   this.nodes = this.nodes || [];
   return this.nodes.push(node);
@@ -19917,7 +19917,7 @@ Node.prototype.push = function(node) {
 
 Node.prototype.unshift = function(node) {
   assert(Node.isNode(node), 'expected node to be an instance of Node');
-  D__git_packageInherit_node_modules_snapdragonNode_node_modules_defineProperty(node, 'parent', this);
+  defineProperty$1(node, 'parent', this);
 
   this.nodes = this.nodes || [];
   return this.nodes.unshift(node);
@@ -20007,7 +20007,7 @@ Node.prototype.remove = function(node) {
  */
 
 Node.prototype.find = function(type) {
-  return D__git_packageInherit_node_modules_snapdragonUtil.findNode(this.nodes, type);
+  return snapdragonUtil.findNode(this.nodes, type);
 };
 
 /**
@@ -20025,7 +20025,7 @@ Node.prototype.find = function(type) {
  */
 
 Node.prototype.isType = function(type) {
-  return D__git_packageInherit_node_modules_snapdragonUtil.isType(this, type);
+  return snapdragonUtil.isType(this, type);
 };
 
 /**
@@ -20046,7 +20046,7 @@ Node.prototype.isType = function(type) {
  */
 
 Node.prototype.hasType = function(type) {
-  return D__git_packageInherit_node_modules_snapdragonUtil.hasType(this, type);
+  return snapdragonUtil.hasType(this, type);
 };
 
 /**
@@ -20098,7 +20098,7 @@ Object.defineProperty(Node.prototype, 'siblings', {
 
 Object.defineProperty(Node.prototype, 'index', {
   set: function(index) {
-    D__git_packageInherit_node_modules_snapdragonNode_node_modules_defineProperty(this, 'idx', index);
+    defineProperty$1(this, 'idx', index);
   },
   get: function() {
     if (!Array.isArray(this.siblings)) {
@@ -20213,7 +20213,7 @@ Object.defineProperty(Node.prototype, 'first', {
 
 Object.defineProperty(Node.prototype, 'last', {
   get: function() {
-    return this.nodes ? D__git_packageInherit_node_modules_snapdragonUtil.last(this.nodes) : null;
+    return this.nodes ? snapdragonUtil.last(this.nodes) : null;
   }
 });
 
@@ -20278,7 +20278,7 @@ var parsers = function(braces, options) {
   braces.parser
     .set('bos', function() {
       if (!this.parsed) {
-        this.ast = this.nodes[0] = new D__git_packageInherit_node_modules_snapdragonNode(this.ast);
+        this.ast = this.nodes[0] = new snapdragonNode(this.ast);
       }
     })
 
@@ -20294,7 +20294,7 @@ var parsers = function(braces, options) {
       var prev = this.prev();
       var last = utils_1.last(prev.nodes);
 
-      var node = pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      var node = pos(new snapdragonNode({
         type: 'text',
         multiplier: 1,
         val: m[0]
@@ -20376,7 +20376,7 @@ var parsers = function(braces, options) {
         }
       }
 
-      return pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      return pos(new snapdragonNode({
         type: 'bracket',
         val: val,
         escaped: close !== ']',
@@ -20406,7 +20406,7 @@ var parsers = function(braces, options) {
         prev.text += val;
       }
 
-      var node = pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      var node = pos(new snapdragonNode({
         type: 'text',
         multiplier: 1,
         match: m,
@@ -20435,12 +20435,12 @@ var parsers = function(braces, options) {
         last.optimize = false;
       }
 
-      var open = pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      var open = pos(new snapdragonNode({
         type: 'brace.open',
         val: m[0]
       }));
 
-      var node = pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      var node = pos(new snapdragonNode({
         type: 'brace',
         nodes: []
       }));
@@ -20460,7 +20460,7 @@ var parsers = function(braces, options) {
       if (!m || !m[0]) return;
 
       var brace = this.pop('brace');
-      var node = pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      var node = pos(new snapdragonNode({
         type: 'brace.close',
         val: m[0]
       }));
@@ -20507,7 +20507,7 @@ var parsers = function(braces, options) {
       var pos = this.position();
       var m = this.match(/^[$^](?!\{)/);
       if (!m) return;
-      return pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      return pos(new snapdragonNode({
         type: 'text',
         val: m[0]
       }));
@@ -20531,7 +20531,7 @@ var parsers = function(braces, options) {
         prev.text += val;
       }
 
-      return pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      return pos(new snapdragonNode({
         type: 'text',
         multiplier: 0,
         val: val
@@ -20556,7 +20556,7 @@ var parsers = function(braces, options) {
         prev.text += val;
       }
 
-      var node = pos(new D__git_packageInherit_node_modules_snapdragonNode({
+      var node = pos(new snapdragonNode({
         type: 'text',
         multiplier: 1,
         val: val
@@ -20626,7 +20626,7 @@ function concatNodes(pos, node, parent, options) {
   prev.push(node);
 }
 
-var D__git_packageInherit_node_modules_base_node_modules_defineProperty = function defineProperty(obj, prop, val) {
+var defineProperty$2 = function defineProperty(obj, prop, val) {
   if (typeof obj !== 'object' && typeof obj !== 'function') {
     throw new TypeError('expected an object or function.');
   }
@@ -20635,7 +20635,7 @@ var D__git_packageInherit_node_modules_base_node_modules_defineProperty = functi
     throw new TypeError('expected `prop` to be a string.');
   }
 
-  if (D__git_packageInherit_node_modules_isDescriptor(val) && ('set' in val || 'get' in val)) {
+  if (isDescriptor(val) && ('set' in val || 'get' in val)) {
     return Object.defineProperty(obj, prop, val);
   }
 
@@ -20647,7 +20647,7 @@ var D__git_packageInherit_node_modules_base_node_modules_defineProperty = functi
   });
 };
 
-var D__git_packageInherit_node_modules_componentEmitter = createCommonjsModule(function (module) {
+var componentEmitter = createCommonjsModule(function (module) {
 /**
  * Expose `Emitter`.
  */
@@ -20823,7 +20823,7 @@ Emitter.prototype.hasListeners = function(event){
 };
 });
 
-var D__git_packageInherit_node_modules_objectVisit = function visit(thisArg, method, target, val) {
+var objectVisit = function visit(thisArg, method, target, val) {
   if (!isobject(thisArg) && typeof thisArg !== 'function') {
     throw new Error('object-visit expects `thisArg` to be an object.');
   }
@@ -20854,9 +20854,9 @@ var D__git_packageInherit_node_modules_objectVisit = function visit(thisArg, met
  * @param  {Object} `arr` Array of objects.
  */
 
-var D__git_packageInherit_node_modules_mapVisit = function mapVisit(collection, method, val) {
+var mapVisit = function mapVisit(collection, method, val) {
   if (isObject$6(val)) {
-    return D__git_packageInherit_node_modules_objectVisit.apply(null, arguments);
+    return objectVisit.apply(null, arguments);
   }
 
   if (!Array.isArray(val)) {
@@ -20868,7 +20868,7 @@ var D__git_packageInherit_node_modules_mapVisit = function mapVisit(collection, 
   for (var i = 0; i < val.length; i++) {
     var ele = val[i];
     if (isObject$6(ele)) {
-      D__git_packageInherit_node_modules_objectVisit.apply(null, [collection, method, ele].concat(args));
+      objectVisit.apply(null, [collection, method, ele].concat(args));
     } else {
       collection[method].apply(collection, [ele].concat(args));
     }
@@ -20879,16 +20879,16 @@ function isObject$6(val) {
   return val && (typeof val === 'function' || (!Array.isArray(val) && typeof val === 'object'));
 }
 
-var D__git_packageInherit_node_modules_collectionVisit = function(collection, method, val) {
+var collectionVisit = function(collection, method, val) {
   var result;
 
   if (typeof val === 'string' && (method in collection)) {
     var args = [].slice.call(arguments, 2);
     result = collection[method].apply(collection, args);
   } else if (Array.isArray(val)) {
-    result = D__git_packageInherit_node_modules_mapVisit.apply(null, arguments);
+    result = mapVisit.apply(null, arguments);
   } else {
-    result = D__git_packageInherit_node_modules_objectVisit.apply(null, arguments);
+    result = objectVisit.apply(null, arguments);
   }
 
   if (typeof result !== 'undefined') {
@@ -20898,8 +20898,8 @@ var D__git_packageInherit_node_modules_collectionVisit = function(collection, me
   return collection;
 };
 
-var D__git_packageInherit_node_modules_toObjectPath = function toPath(args) {
-  if (D__git_packageInherit_node_modules_kindOf(args) !== 'arguments') {
+var toObjectPath = function toPath(args) {
+  if (kindOf$3(args) !== 'arguments') {
     args = arguments;
   }
   return filter(args).join('.');
@@ -20912,7 +20912,7 @@ function filter(arr) {
 
   while (++idx < len) {
     var ele = arr[idx];
-    if (D__git_packageInherit_node_modules_kindOf(ele) === 'arguments' || Array.isArray(ele)) {
+    if (kindOf$3(ele) === 'arguments' || Array.isArray(ele)) {
       res.push.apply(res, filter(ele));
     } else if (typeof ele === 'string') {
       res.push(ele);
@@ -20921,7 +20921,7 @@ function filter(arr) {
   return res;
 }
 
-var D__git_packageInherit_node_modules_arrUnion = function union(init) {
+var arrUnion = function union(init) {
   if (!Array.isArray(init)) {
     throw new TypeError('arr-union expects the first argument to be an array.');
   }
@@ -20956,7 +20956,7 @@ var D__git_packageInherit_node_modules_arrUnion = function union(init) {
  * Licensed under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_getValue = function(obj, prop, a, b, c) {
+var getValue = function(obj, prop, a, b, c) {
   if (!isObject$7(obj) || !prop) {
     return obj;
   }
@@ -21000,8 +21000,8 @@ function toString$4(val) {
   return val;
 }
 
-var D__git_packageInherit_node_modules_setValue = function(obj, prop, val) {
-  if (!D__git_packageInherit_node_modules_isExtendable(obj)) {
+var setValue = function(obj, prop, val) {
+  if (!isExtendable$2(obj)) {
     return obj;
   }
 
@@ -21013,7 +21013,7 @@ var D__git_packageInherit_node_modules_setValue = function(obj, prop, val) {
     return obj;
   }
 
-  var keys = D__git_packageInherit_node_modules_splitString(prop, {sep: '.', brackets: true}).filter(isValidKey);
+  var keys = splitString(prop, {sep: '.', brackets: true}).filter(isValidKey);
   var len = keys.length;
   var idx = -1;
   var current = obj;
@@ -21021,7 +21021,7 @@ var D__git_packageInherit_node_modules_setValue = function(obj, prop, val) {
   while (++idx < len) {
     var key = keys[idx];
     if (idx !== len - 1) {
-      if (!D__git_packageInherit_node_modules_isExtendable(current[key])) {
+      if (!isExtendable$2(current[key])) {
         current[key] = {};
       }
       current = current[key];
@@ -21029,7 +21029,7 @@ var D__git_packageInherit_node_modules_setValue = function(obj, prop, val) {
     }
 
     if (isPlainObject(current[key]) && isPlainObject(val)) {
-      current[key] = D__git_packageInherit_node_modules_extendShallow({}, current[key], val);
+      current[key] = extendShallow$2({}, current[key], val);
     } else {
       current[key] = val;
     }
@@ -21042,8 +21042,8 @@ function isValidKey(key) {
   return key !== '__proto__' && key !== 'constructor' && key !== 'prototype';
 }
 
-var D__git_packageInherit_node_modules_unionValue = function unionValue(obj, prop, value) {
-  if (!D__git_packageInherit_node_modules_isExtendable(obj)) {
+var unionValue = function unionValue(obj, prop, value) {
+  if (!isExtendable$2(obj)) {
     throw new TypeError('union-value expects the first argument to be an object.');
   }
 
@@ -21051,8 +21051,8 @@ var D__git_packageInherit_node_modules_unionValue = function unionValue(obj, pro
     throw new TypeError('union-value expects `prop` to be a string.');
   }
 
-  var arr = arrayify(D__git_packageInherit_node_modules_getValue(obj, prop));
-  D__git_packageInherit_node_modules_setValue(obj, prop, D__git_packageInherit_node_modules_arrUnion(arr, arrayify(value)));
+  var arr = arrayify(getValue(obj, prop));
+  setValue(obj, prop, arrUnion(arr, arrayify(value)));
   return obj;
 };
 
@@ -21068,8 +21068,12 @@ function arrayify(val) {
 
 var toString$5 = {}.toString;
 
-var D__git_packageInherit_node_modules_isarray = Array.isArray || function (arr) {
+var isarray = Array.isArray || function (arr) {
   return toString$5.call(arr) == '[object Array]';
+};
+
+var isobject$1 = function isObject(val) {
+  return val != null && typeof val === 'object' && isarray(val) === false;
 };
 
 /*!
@@ -21079,7 +21083,7 @@ var D__git_packageInherit_node_modules_isarray = Array.isArray || function (arr)
  * Licensed under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_unsetValue_node_modules_hasValues = function hasValue(o, noZero) {
+var hasValues = function hasValue(o, noZero) {
   if (o === null || o === undefined) {
     return false;
   }
@@ -21107,18 +21111,14 @@ var D__git_packageInherit_node_modules_unsetValue_node_modules_hasValues = funct
   return false;
 };
 
-var D__git_packageInherit_node_modules_unsetValue_node_modules_hasValue_node_modules_isobject = function isObject(val) {
-  return val != null && typeof val === 'object' && D__git_packageInherit_node_modules_isarray(val) === false;
-};
-
-var D__git_packageInherit_node_modules_unsetValue_node_modules_hasValue = function(obj, prop, noZero) {
-  if (D__git_packageInherit_node_modules_unsetValue_node_modules_hasValue_node_modules_isobject(obj)) {
-    return D__git_packageInherit_node_modules_unsetValue_node_modules_hasValues(D__git_packageInherit_node_modules_getValue(obj, prop), noZero);
+var hasValue = function(obj, prop, noZero) {
+  if (isobject$1(obj)) {
+    return hasValues(getValue(obj, prop), noZero);
   }
-  return D__git_packageInherit_node_modules_unsetValue_node_modules_hasValues(obj, prop);
+  return hasValues(obj, prop);
 };
 
-var D__git_packageInherit_node_modules_unsetValue = function unset(obj, prop) {
+var unsetValue = function unset(obj, prop) {
   if (!isobject(obj)) {
     throw new TypeError('expected an object.');
   }
@@ -21127,7 +21127,7 @@ var D__git_packageInherit_node_modules_unsetValue = function unset(obj, prop) {
     return true;
   }
 
-  if (D__git_packageInherit_node_modules_unsetValue_node_modules_hasValue(obj, prop)) {
+  if (hasValue(obj, prop)) {
     var segs = prop.split('.');
     var last = segs.pop();
     while (segs.length && segs[segs.length - 1].slice(-1) === '\\') {
@@ -21182,7 +21182,7 @@ function namespace(prop) {
    * Inherit Emitter
    */
 
-  D__git_packageInherit_node_modules_componentEmitter(Cache.prototype);
+  componentEmitter(Cache.prototype);
 
   /**
    * Assign `value` to `key`. Also emits `set` with
@@ -21212,12 +21212,12 @@ function namespace(prop) {
 
   Cache.prototype.set = function(key, val) {
     if (Array.isArray(key) && arguments.length === 2) {
-      key = D__git_packageInherit_node_modules_toObjectPath(key);
+      key = toObjectPath(key);
     }
     if (isobject(key) || Array.isArray(key)) {
       this.visit('set', key);
     } else {
-      D__git_packageInherit_node_modules_setValue(prop ? this[prop] : this, key, val);
+      setValue(prop ? this[prop] : this, key, val);
       this.emit('set', key, val);
     }
     return this;
@@ -21242,10 +21242,10 @@ function namespace(prop) {
 
   Cache.prototype.union = function(key, val) {
     if (Array.isArray(key) && arguments.length === 2) {
-      key = D__git_packageInherit_node_modules_toObjectPath(key);
+      key = toObjectPath(key);
     }
     var ctx = prop ? this[prop] : this;
-    D__git_packageInherit_node_modules_unionValue(ctx, key, arrayify$1(val));
+    unionValue(ctx, key, arrayify$1(val));
     this.emit('union', val);
     return this;
   };
@@ -21271,10 +21271,10 @@ function namespace(prop) {
    */
 
   Cache.prototype.get = function(key) {
-    key = D__git_packageInherit_node_modules_toObjectPath(arguments);
+    key = toObjectPath(arguments);
 
     var ctx = prop ? this[prop] : this;
-    var val = D__git_packageInherit_node_modules_getValue(ctx, key);
+    var val = getValue(ctx, key);
 
     this.emit('get', key, val);
     return val;
@@ -21298,10 +21298,10 @@ function namespace(prop) {
    */
 
   Cache.prototype.has = function(key) {
-    key = D__git_packageInherit_node_modules_toObjectPath(arguments);
+    key = toObjectPath(arguments);
 
     var ctx = prop ? this[prop] : this;
-    var val = D__git_packageInherit_node_modules_getValue(ctx, key);
+    var val = getValue(ctx, key);
 
     var has = typeof val !== 'undefined';
     this.emit('has', key, has);
@@ -21329,7 +21329,7 @@ function namespace(prop) {
     if (Array.isArray(key)) {
       this.visit('del', key);
     } else {
-      D__git_packageInherit_node_modules_unsetValue(prop ? this[prop] : this, key);
+      unsetValue(prop ? this[prop] : this, key);
       this.emit('del', key);
     }
     return this;
@@ -21362,7 +21362,7 @@ function namespace(prop) {
    */
 
   Cache.prototype.visit = function(method, val) {
-    D__git_packageInherit_node_modules_collectionVisit(this, method, val);
+    collectionVisit(this, method, val);
     return this;
   };
 
@@ -21381,16 +21381,16 @@ function arrayify$1(val) {
  * Expose `Cache`
  */
 
-var D__git_packageInherit_node_modules_cacheBase = namespace();
+var cacheBase = namespace();
 
 /**
  * Expose `Cache.namespace`
  */
 
 var namespace_1 = namespace;
-D__git_packageInherit_node_modules_cacheBase.namespace = namespace_1;
+cacheBase.namespace = namespace_1;
 
-var isExtendable$3 = function isExtendable(val) {
+var isExtendable$4 = function isExtendable(val) {
   return isPlainObject(val) || typeof val === 'function' || Array.isArray(val);
 };
 
@@ -21401,7 +21401,7 @@ var isExtendable$3 = function isExtendable(val) {
  * Released under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_forIn = function forIn(obj, fn, thisArg) {
+var forIn = function forIn(obj, fn, thisArg) {
   for (var key in obj) {
     if (fn.call(thisArg, obj[key], key, obj) === false) {
       break;
@@ -21414,7 +21414,7 @@ function mixinDeep(target, objects) {
   while (++i < len) {
     var obj = arguments[i];
     if (isObject$8(obj)) {
-      D__git_packageInherit_node_modules_forIn(obj, copy$1, target);
+      forIn(obj, copy$2, target);
     }
   }
   return target;
@@ -21428,7 +21428,7 @@ function mixinDeep(target, objects) {
  * @param  {String} `key`
  */
 
-function copy$1(val, key) {
+function copy$2(val, key) {
   if (!isValidKey$1(key)) {
     return;
   }
@@ -21449,7 +21449,7 @@ function copy$1(val, key) {
  */
 
 function isObject$8(val) {
-  return isExtendable$3(val) && !Array.isArray(val);
+  return isExtendable$4(val) && !Array.isArray(val);
 }
 
 /**
@@ -21466,7 +21466,7 @@ function isValidKey$1(key) {
  * Expose `mixinDeep`
  */
 
-var D__git_packageInherit_node_modules_mixinDeep = mixinDeep;
+var mixinDeep_1 = mixinDeep;
 
 /*!
  * pascalcase <https://github.com/jonschlinkert/pascalcase>
@@ -21488,7 +21488,7 @@ function pascalcase(str) {
   });
 }
 
-var D__git_packageInherit_node_modules_pascalcase = pascalcase;
+var pascalcase_1 = pascalcase;
 
 var toString$6 = Object.prototype.toString;
 
@@ -21499,7 +21499,7 @@ var toString$6 = Object.prototype.toString;
  * @return {*} Native javascript type
  */
 
-var D__git_packageInherit_node_modules_defineProperty_node_modules_kindOf = function kindOf(val) {
+var kindOf$4 = function kindOf(val) {
   var type = typeof val;
 
   // primitivies
@@ -21647,7 +21647,7 @@ var toString$7 = Object.prototype.toString;
  * @return {*} Native javascript type
  */
 
-var D__git_packageInherit_node_modules_defineProperty_node_modules_isAccessorDescriptor_node_modules_kindOf = function kindOf(val) {
+var kindOf$5 = function kindOf(val) {
   // primitivies
   if (typeof val === 'undefined') {
     return 'undefined';
@@ -21700,7 +21700,7 @@ var D__git_packageInherit_node_modules_defineProperty_node_modules_isAccessorDes
   }
 
   // buffer
-  if (D__git_packageInherit_node_modules_isBuffer(val)) {
+  if (isBuffer_1(val)) {
     return 'buffer';
   }
 
@@ -21768,7 +21768,7 @@ function isAccessorDescriptor$1(obj, prop) {
     return typeof val !== 'undefined';
   }
 
-  if (D__git_packageInherit_node_modules_defineProperty_node_modules_isAccessorDescriptor_node_modules_kindOf(obj) !== 'object') {
+  if (kindOf$5(obj) !== 'object') {
     return false;
   }
 
@@ -21792,7 +21792,7 @@ function isAccessorDescriptor$1(obj, prop) {
       continue;
     }
 
-    if (D__git_packageInherit_node_modules_defineProperty_node_modules_isAccessorDescriptor_node_modules_kindOf(obj[key]) === accessor$1[key]) {
+    if (kindOf$5(obj[key]) === accessor$1[key]) {
       continue;
     }
 
@@ -21811,7 +21811,7 @@ function has$1(obj, key) {
  * Expose `isAccessorDescriptor`
  */
 
-var D__git_packageInherit_node_modules_defineProperty_node_modules_isAccessorDescriptor = isAccessorDescriptor$1;
+var isAccessorDescriptor_1$1 = isAccessorDescriptor$1;
 
 var toString$8 = Object.prototype.toString;
 
@@ -21822,7 +21822,7 @@ var toString$8 = Object.prototype.toString;
  * @return {*} Native javascript type
  */
 
-var D__git_packageInherit_node_modules_defineProperty_node_modules_isDataDescriptor_node_modules_kindOf = function kindOf(val) {
+var kindOf$6 = function kindOf(val) {
   // primitivies
   if (typeof val === 'undefined') {
     return 'undefined';
@@ -21875,7 +21875,7 @@ var D__git_packageInherit_node_modules_defineProperty_node_modules_isDataDescrip
   }
 
   // buffer
-  if (D__git_packageInherit_node_modules_isBuffer(val)) {
+  if (isBuffer_1(val)) {
     return 'buffer';
   }
 
@@ -21936,8 +21936,8 @@ var data = {
   writable: 'boolean'
 };
 
-function isDataDescriptor(obj, prop) {
-  if (D__git_packageInherit_node_modules_defineProperty_node_modules_isDataDescriptor_node_modules_kindOf(obj) !== 'object') {
+function isDataDescriptor$1(obj, prop) {
+  if (kindOf$6(obj) !== 'object') {
     return false;
   }
 
@@ -21957,7 +21957,7 @@ function isDataDescriptor(obj, prop) {
       continue;
     }
 
-    if (D__git_packageInherit_node_modules_defineProperty_node_modules_isDataDescriptor_node_modules_kindOf(obj[key]) === data[key]) {
+    if (kindOf$6(obj[key]) === data[key]) {
       continue;
     }
 
@@ -21972,19 +21972,19 @@ function isDataDescriptor(obj, prop) {
  * Expose `isDataDescriptor`
  */
 
-var D__git_packageInherit_node_modules_defineProperty_node_modules_isDataDescriptor = isDataDescriptor;
+var isDataDescriptor_1 = isDataDescriptor$1;
 
-var D__git_packageInherit_node_modules_defineProperty_node_modules_isDescriptor = function isDescriptor(obj, key) {
-  if (D__git_packageInherit_node_modules_defineProperty_node_modules_kindOf(obj) !== 'object') {
+var isDescriptor$1 = function isDescriptor(obj, key) {
+  if (kindOf$4(obj) !== 'object') {
     return false;
   }
   if ('get' in obj) {
-    return D__git_packageInherit_node_modules_defineProperty_node_modules_isAccessorDescriptor(obj, key);
+    return isAccessorDescriptor_1$1(obj, key);
   }
-  return D__git_packageInherit_node_modules_defineProperty_node_modules_isDataDescriptor(obj, key);
+  return isDataDescriptor_1(obj, key);
 };
 
-var D__git_packageInherit_node_modules_defineProperty = function defineProperty(obj, prop, val) {
+var defineProperty$3 = function defineProperty(obj, prop, val) {
   if (typeof obj !== 'object' && typeof obj !== 'function') {
     throw new TypeError('expected an object or function.');
   }
@@ -21993,7 +21993,7 @@ var D__git_packageInherit_node_modules_defineProperty = function defineProperty(
     throw new TypeError('expected `prop` to be a string.');
   }
 
-  if (D__git_packageInherit_node_modules_defineProperty_node_modules_isDescriptor(val) && ('set' in val || 'get' in val)) {
+  if (isDescriptor$1(val) && ('set' in val || 'get' in val)) {
     return Object.defineProperty(obj, prop, val);
   }
 
@@ -22052,7 +22052,7 @@ var D__git_packageInherit_node_modules_defineProperty = function defineProperty(
  * @api public
  */
 
-var D__git_packageInherit_node_modules_copyDescriptor = function copyDescriptor(receiver, provider, from, to) {
+var copyDescriptor = function copyDescriptor(receiver, provider, from, to) {
   if (!isObject$9(provider) && typeof provider !== 'function') {
     to = from;
     from = provider;
@@ -22103,7 +22103,7 @@ function isObject$9(val) {
  * @api public
  */
 
-function copy$2(receiver, provider, omit) {
+function copy$3(receiver, provider, omit) {
   if (!isObject$a(receiver)) {
     throw new TypeError('expected receiving object to be an object.');
   }
@@ -22120,9 +22120,9 @@ function copy$2(receiver, provider, omit) {
     var key = props[len];
 
     if (has$2(keys, key)) {
-      D__git_packageInherit_node_modules_defineProperty(receiver, key, provider[key]);
+      defineProperty$3(receiver, key, provider[key]);
     } else if (!(key in receiver) && !has$2(omit, key)) {
-      D__git_packageInherit_node_modules_copyDescriptor(receiver, provider, key);
+      copyDescriptor(receiver, provider, key);
     }
   }
 }
@@ -22131,7 +22131,7 @@ function copy$2(receiver, provider, omit) {
  */
 
 function isObject$a(val) {
-  return D__git_packageInherit_node_modules_kindOf(val) === 'object' || typeof val === 'function';
+  return kindOf$3(val) === 'object' || typeof val === 'function';
 }
 
 /**
@@ -22244,14 +22244,14 @@ function nativeKeys(val) {
  * Expose `copy`
  */
 
-var D__git_packageInherit_node_modules_objectCopy = copy$2;
+var objectCopy = copy$3;
 
 /**
  * Expose `copy.has` for tests
  */
 
 var has_1 = has$2;
-D__git_packageInherit_node_modules_objectCopy.has = has_1;
+objectCopy.has = has_1;
 
 /**
  * Returns a function for extending the static properties,
@@ -22297,7 +22297,7 @@ function extend$1(Parent, extendFn) {
     }
 
     util__default['default'].inherits(Ctor, Parent);
-    D__git_packageInherit_node_modules_objectCopy(Ctor, Parent);
+    objectCopy(Ctor, Parent);
 
     // proto can be null or a plain object
     if (typeof proto === 'object') {
@@ -22309,7 +22309,7 @@ function extend$1(Parent, extendFn) {
     }
 
     // keep a reference to the parent prototype
-    D__git_packageInherit_node_modules_defineProperty(Ctor.prototype, '_parent_', {
+    defineProperty$3(Ctor.prototype, '_parent_', {
       configurable: true,
       set: function() {},
       get: function() {
@@ -22328,9 +22328,9 @@ function extend$1(Parent, extendFn) {
  * Expose `extend`
  */
 
-var D__git_packageInherit_node_modules_staticExtend = extend$1;
+var staticExtend = extend$1;
 
-var D__git_packageInherit_node_modules_classUtils = createCommonjsModule(function (module) {
+var classUtils = createCommonjsModule(function (module) {
 
 
 
@@ -22610,7 +22610,7 @@ cu.copy = function copy(receiver, provider, omit) {
     key = props[len];
 
     if (cu.has(keys, key)) {
-      D__git_packageInherit_node_modules_defineProperty(receiver, key, provider[key]);
+      defineProperty$3(receiver, key, provider[key]);
     } else if (!(key in receiver) && !cu.has(omit, key)) {
       cu.copyDescriptor(receiver, provider, key);
     }
@@ -22674,7 +22674,7 @@ cu.inherit = function inherit(receiver, provider, omit) {
 
 cu.extend = function() {
   // keep it lazy, instead of assigning to `cu.extend`
-  return D__git_packageInherit_node_modules_staticExtend.apply(null, arguments);
+  return staticExtend.apply(null, arguments);
 };
 
 /**
@@ -22689,7 +22689,7 @@ cu.bubble = function(Parent, events) {
   events = events || [];
   Parent.bubble = function(Child, arr) {
     if (Array.isArray(arr)) {
-      events = D__git_packageInherit_node_modules_arrUnion([], events, arr);
+      events = arrUnion([], events, arr);
     }
     var len = events.length;
     var idx = -1;
@@ -22707,7 +22707,7 @@ cu.bubble = function(Parent, events) {
  */
 
 function namespace$1(name) {
-  var Cache = name ? D__git_packageInherit_node_modules_cacheBase.namespace(name) : D__git_packageInherit_node_modules_cacheBase;
+  var Cache = name ? cacheBase.namespace(name) : cacheBase;
   var fns = [];
 
   /**
@@ -22753,14 +22753,14 @@ function namespace$1(name) {
    * Add static emitter methods
    */
 
-  D__git_packageInherit_node_modules_componentEmitter(Base);
+  componentEmitter(Base);
 
   /**
    * Initialize `Base` defaults with the given `config` object
    */
 
   Base.prototype.initBase = function(config, options) {
-    this.options = D__git_packageInherit_node_modules_mixinDeep({}, this.options, options);
+    this.options = mixinDeep_1({}, this.options, options);
     this.cache = this.cache || {};
     this.define('registered', {});
     if (name) this[name] = {};
@@ -22801,7 +22801,7 @@ function namespace$1(name) {
     if (typeof name !== 'string') {
       throw new TypeError('expected name to be a string');
     }
-    this.define('is' + D__git_packageInherit_node_modules_pascalcase(name), true);
+    this.define('is' + pascalcase_1(name), true);
     this.define('_name', name);
     this.define('_appname', name);
     return this;
@@ -22891,7 +22891,7 @@ function namespace$1(name) {
     if (isobject(key)) {
       return this.visit('define', key);
     }
-    D__git_packageInherit_node_modules_base_node_modules_defineProperty(this, key, val);
+    defineProperty$2(this, key, val);
     return this;
   };
 
@@ -22983,7 +22983,7 @@ function namespace$1(name) {
    * @api public
    */
 
-  D__git_packageInherit_node_modules_base_node_modules_defineProperty(Base, 'use', function(fn) {
+  defineProperty$2(Base, 'use', function(fn) {
     fns.push(fn);
     return Base;
   });
@@ -22997,7 +22997,7 @@ function namespace$1(name) {
    * @param  {Array} `arr` Array of functions to pass to the method.
    */
 
-  D__git_packageInherit_node_modules_base_node_modules_defineProperty(Base, 'run', function(obj, prop, arr) {
+  defineProperty$2(Base, 'run', function(obj, prop, arr) {
     var len = arr.length, i = 0;
     while (len--) {
       obj[prop](arr[i++]);
@@ -23027,10 +23027,10 @@ function namespace$1(name) {
    * @api public
    */
 
-  D__git_packageInherit_node_modules_base_node_modules_defineProperty(Base, 'extend', D__git_packageInherit_node_modules_classUtils.extend(Base, function(Ctor, Parent) {
+  defineProperty$2(Base, 'extend', classUtils.extend(Base, function(Ctor, Parent) {
     Ctor.prototype.mixins = Ctor.prototype.mixins || [];
 
-    D__git_packageInherit_node_modules_base_node_modules_defineProperty(Ctor, 'mixin', function(fn) {
+    defineProperty$2(Ctor, 'mixin', function(fn) {
       var mixin = fn(Ctor.prototype, Ctor);
       if (typeof mixin === 'function') {
         Ctor.prototype.mixins.push(mixin);
@@ -23038,7 +23038,7 @@ function namespace$1(name) {
       return Ctor;
     });
 
-    D__git_packageInherit_node_modules_base_node_modules_defineProperty(Ctor, 'mixins', function(Child) {
+    defineProperty$2(Ctor, 'mixins', function(Child) {
       Base.run(Child, 'mixin', Ctor.prototype.mixins);
       return Ctor;
     });
@@ -23069,7 +23069,7 @@ function namespace$1(name) {
    * @api public
    */
 
-  D__git_packageInherit_node_modules_base_node_modules_defineProperty(Base, 'mixin', function(fn) {
+  defineProperty$2(Base, 'mixin', function(fn) {
     var mixin = fn(Base.prototype, Base);
     if (typeof mixin === 'function') {
       Base.prototype.mixins.push(mixin);
@@ -23091,7 +23091,7 @@ function namespace$1(name) {
    * @api public
    */
 
-  D__git_packageInherit_node_modules_base_node_modules_defineProperty(Base, 'mixins', function(Child) {
+  defineProperty$2(Base, 'mixins', function(Child) {
     Base.run(Child, 'mixin', Base.prototype.mixins);
     return Base;
   });
@@ -23110,8 +23110,8 @@ function namespace$1(name) {
    * @api public
    */
 
-  D__git_packageInherit_node_modules_base_node_modules_defineProperty(Base, 'inherit', D__git_packageInherit_node_modules_classUtils.inherit);
-  D__git_packageInherit_node_modules_base_node_modules_defineProperty(Base, 'bubble', D__git_packageInherit_node_modules_classUtils.bubble);
+  defineProperty$2(Base, 'inherit', classUtils.inherit);
+  defineProperty$2(Base, 'bubble', classUtils.bubble);
   return Base;
 }
 
@@ -23119,14 +23119,14 @@ function namespace$1(name) {
  * Expose `Base` with default settings
  */
 
-var D__git_packageInherit_node_modules_base = namespace$1();
+var base = namespace$1();
 
 /**
  * Allow users to define a namespace
  */
 
 var namespace_1$1 = namespace$1;
-D__git_packageInherit_node_modules_base.namespace = namespace_1$1;
+base.namespace = namespace_1$1;
 
 /*!
  * use <https://github.com/jonschlinkert/use>
@@ -23135,7 +23135,7 @@ D__git_packageInherit_node_modules_base.namespace = namespace_1$1;
  * Released under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_use = function base(app, options) {
+var use = function base(app, options) {
   if (!isObject$b(app) && typeof app !== 'function') {
     throw new TypeError('expected an object or function');
   }
@@ -23306,7 +23306,7 @@ var y = d * 365.25;
  * @api public
  */
 
-var D__git_packageInherit_node_modules_ms = function(val, options) {
+var ms = function(val, options) {
   options = options || {};
   var type = typeof val;
   if (type === 'string' && val.length > 0) {
@@ -23448,7 +23448,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = D__git_packageInherit_node_modules_ms;
+exports.humanize = ms;
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -24078,7 +24078,7 @@ function init (debug) {
 exports.enable(load());
 });
 
-var D__git_packageInherit_node_modules_debug_src = createCommonjsModule(function (module) {
+var src = createCommonjsModule(function (module) {
 /**
  * Detect Electron renderer process, which is node, but we should
  * treat as a browser.
@@ -27258,7 +27258,7 @@ function customDecodeURIComponent(input) {
 	return input;
 }
 
-var D__git_packageInherit_node_modules_decodeUriComponent = function (encodedURI) {
+var decodeUriComponent = function (encodedURI) {
 	if (typeof encodedURI !== 'string') {
 		throw new TypeError('Expected `encodedURI` to be of type `string`, got `' + typeof encodedURI + '`');
 	}
@@ -27276,7 +27276,7 @@ var D__git_packageInherit_node_modules_decodeUriComponent = function (encodedURI
 
 function customDecodeUriComponent(string) {
   // `decodeUriComponent` turns `+` into ` `, but that's not wanted.
-  return D__git_packageInherit_node_modules_decodeUriComponent(string.replace(/\+/g, "%2B"))
+  return decodeUriComponent(string.replace(/\+/g, "%2B"))
 }
 
 var decodeUriComponent_1 = customDecodeUriComponent;
@@ -27290,7 +27290,7 @@ function urix(aPath) {
   return aPath
 }
 
-var D__git_packageInherit_node_modules_urix = urix;
+var urix_1 = urix;
 
 function atob(str) {
   return Buffer.from(str, 'base64').toString('binary');
@@ -27400,7 +27400,7 @@ function decodeBase64String(b64) {
 }
 
 function resolveSourceMapHelper(code, codeUrl) {
-  codeUrl = D__git_packageInherit_node_modules_urix(codeUrl);
+  codeUrl = urix_1(codeUrl);
 
   var url = sourceMapUrl.getFrom(code);
   if (!url) {
@@ -27517,7 +27517,7 @@ var endingSlash = /\/?$/;
 
 function resolveSourcesHelper(map, mapUrl, options, fn) {
   options = options || {};
-  mapUrl = D__git_packageInherit_node_modules_urix(mapUrl);
+  mapUrl = urix_1(mapUrl);
   var fullUrl;
   var sourceContent;
   var sourceRoot;
@@ -27636,7 +27636,7 @@ var sourceMapResolveNode = {
  * Module dependencies
  */
 
-var extend$2 = D__git_packageInherit_node_modules_extendShallow;
+var extend$2 = extendShallow$2;
 var SourceMap = sourceMap;
 var sourceMapResolve = sourceMapResolveNode;
 
@@ -27713,14 +27713,14 @@ module.exports = mixin;
  */
 
 function mixin(compiler) {
-  D__git_packageInherit_node_modules_defineProperty(compiler, '_comment', compiler.comment);
+  defineProperty$3(compiler, '_comment', compiler.comment);
   compiler.map = new utils$4.SourceMap.SourceMapGenerator();
   compiler.position = { line: 1, column: 1 };
   compiler.content = {};
   compiler.files = {};
 
   for (var key in exports) {
-    D__git_packageInherit_node_modules_defineProperty(compiler, key, exports[key]);
+    defineProperty$3(compiler, key, exports[key]);
   }
 }
 
@@ -27836,7 +27836,7 @@ exports.comment = function(node) {
 };
 });
 
-var debug$1 = D__git_packageInherit_node_modules_debug_src('snapdragon:compiler');
+var debug$1 = src('snapdragon:compiler');
 
 
 /**
@@ -27859,7 +27859,7 @@ function Compiler(options, state) {
   this.set('bos', function(node) {
     return this.emit(node.val, node);
   });
-  D__git_packageInherit_node_modules_use(this);
+  use(this);
 }
 
 /**
@@ -27903,7 +27903,7 @@ Compiler.prototype = {
    */
 
   define: function(key, val) {
-    D__git_packageInherit_node_modules_defineProperty(this, key, val);
+    defineProperty$3(this, key, val);
     return this;
   },
 
@@ -28023,7 +28023,7 @@ var hasOwn$4 = Object.prototype.hasOwnProperty;
  * Expose `MapCache`
  */
 
-var D__git_packageInherit_node_modules_mapCache = MapCache;
+var mapCache = MapCache;
 
 /**
  * Creates a cache object to store key/value pairs.
@@ -28116,11 +28116,11 @@ MapCache.prototype.del = function mapDelete(key) {
 var position = function Position(start, parser) {
   this.start = start;
   this.end = { line: parser.line, column: parser.column };
-  D__git_packageInherit_node_modules_defineProperty(this, 'content', parser.orig);
-  D__git_packageInherit_node_modules_defineProperty(this, 'source', parser.options.source);
+  defineProperty$3(this, 'content', parser.orig);
+  defineProperty$3(this, 'source', parser.options.source);
 };
 
-var debug$2 = D__git_packageInherit_node_modules_debug_src('snapdragon:parser');
+var debug$2 = src('snapdragon:parser');
 
 
 
@@ -28135,7 +28135,7 @@ function Parser(options) {
   debug$2('initializing', __filename);
   this.options = utils$4.extend({source: 'string'}, options);
   this.init(this.options);
-  D__git_packageInherit_node_modules_use(this);
+  use(this);
 }
 
 /**
@@ -28153,7 +28153,7 @@ Parser.prototype = {
     this.column = 1;
     this.line = 1;
 
-    this.regex = new D__git_packageInherit_node_modules_mapCache();
+    this.regex = new mapCache();
     this.errors = this.errors || [];
     this.parsers = this.parsers || {};
     this.types = this.types || [];
@@ -28170,7 +28170,7 @@ Parser.prototype = {
       nodes: [this.bos]
     };
 
-    D__git_packageInherit_node_modules_defineProperty(this.bos, 'parent', this.ast);
+    defineProperty$3(this.bos, 'parent', this.ast);
     this.nodes = [this.ast];
 
     this.count = 0;
@@ -28216,7 +28216,7 @@ Parser.prototype = {
    */
 
   define: function(key, val) {
-    D__git_packageInherit_node_modules_defineProperty(this, key, val);
+    defineProperty$3(this, key, val);
     return this;
   },
 
@@ -28229,7 +28229,7 @@ Parser.prototype = {
     var self = this;
 
     return function(node) {
-      D__git_packageInherit_node_modules_defineProperty(node, 'position', new position(start, self));
+      defineProperty$3(node, 'position', new position(start, self));
       return node;
     };
   },
@@ -28394,8 +28394,8 @@ Parser.prototype = {
         node.inner = m[1];
       }
 
-      D__git_packageInherit_node_modules_defineProperty(node, 'inside', this.stack.length > 0);
-      D__git_packageInherit_node_modules_defineProperty(node, 'parent', prev);
+      defineProperty$3(node, 'inside', this.stack.length > 0);
+      defineProperty$3(node, 'parent', prev);
       prev.nodes.push(node);
     }.bind(this));
     return this;
@@ -28438,11 +28438,11 @@ Parser.prototype = {
         nodes: [open]
       });
 
-      D__git_packageInherit_node_modules_defineProperty(node, 'rest', this.input);
-      D__git_packageInherit_node_modules_defineProperty(node, 'parsed', parsed);
-      D__git_packageInherit_node_modules_defineProperty(node, 'prefix', m[1]);
-      D__git_packageInherit_node_modules_defineProperty(node, 'parent', prev);
-      D__git_packageInherit_node_modules_defineProperty(open, 'parent', node);
+      defineProperty$3(node, 'rest', this.input);
+      defineProperty$3(node, 'parsed', parsed);
+      defineProperty$3(node, 'prefix', m[1]);
+      defineProperty$3(node, 'parent', prev);
+      defineProperty$3(open, 'parent', node);
 
       if (typeof fn === 'function') {
         fn.call(this, open, node);
@@ -28485,7 +28485,7 @@ Parser.prototype = {
       }
 
       parent.nodes.push(node);
-      D__git_packageInherit_node_modules_defineProperty(node, 'parent', parent);
+      defineProperty$3(node, 'parent', parent);
     });
 
     return this;
@@ -28525,7 +28525,7 @@ Parser.prototype = {
       val: this.append || ''
     });
 
-    D__git_packageInherit_node_modules_defineProperty(tok, 'parent', this.ast);
+    defineProperty$3(tok, 'parent', this.ast);
     return tok;
   },
 
@@ -28541,8 +28541,8 @@ Parser.prototype = {
 
     while (++idx < len) {
       if ((tok = this.parsers[this.types[idx]].call(this))) {
-        D__git_packageInherit_node_modules_defineProperty(tok, 'rest', this.input);
-        D__git_packageInherit_node_modules_defineProperty(tok, 'parsed', parsed);
+        defineProperty$3(tok, 'rest', this.input);
+        defineProperty$3(tok, 'parsed', parsed);
         this.last = tok;
         return tok;
       }
@@ -28573,7 +28573,7 @@ Parser.prototype = {
       if (node) {
         var prev = self.prev();
         if (prev) {
-          D__git_packageInherit_node_modules_defineProperty(node, 'parent', prev);
+          defineProperty$3(node, 'parent', prev);
           if (prev.nodes) {
             prev.nodes.push(node);
           }
@@ -28612,8 +28612,8 @@ Parser.prototype = {
 
 function visit(node, fn) {
   if (!node.visited) {
-    D__git_packageInherit_node_modules_defineProperty(node, 'visited', true);
-    return node.nodes ? mapVisit(node.nodes, fn) : fn(node);
+    defineProperty$3(node, 'visited', true);
+    return node.nodes ? mapVisit$1(node.nodes, fn) : fn(node);
   }
   return node;
 }
@@ -28622,7 +28622,7 @@ function visit(node, fn) {
  * Map visit over array of `nodes`.
  */
 
-function mapVisit(nodes, fn) {
+function mapVisit$1(nodes, fn) {
   var len = nodes.length;
   var idx = -1;
   while (++idx < len) {
@@ -28660,7 +28660,7 @@ var parser$1 = Parser;
  */
 
 function Snapdragon(options) {
-  D__git_packageInherit_node_modules_base.call(this, null, options);
+  base.call(this, null, options);
   this.options = utils$4.extend({source: 'string'}, this.options);
   this.compiler = new compiler(this.options);
   this.parser = new parser$1(this.options);
@@ -28688,7 +28688,7 @@ function Snapdragon(options) {
  * Inherit Base
  */
 
-D__git_packageInherit_node_modules_base.extend(Snapdragon);
+base.extend(Snapdragon);
 
 /**
  * Add a parser to `snapdragon.parsers` for capturing the given `type` using
@@ -28762,7 +28762,7 @@ Snapdragon.prototype.parse = function(str, options) {
   var parsed = this.parser.parse(str, this.options);
 
   // add non-enumerable parser reference
-  D__git_packageInherit_node_modules_defineProperty(parsed, 'parser', this.parser);
+  defineProperty$3(parsed, 'parser', this.parser);
   return parsed;
 };
 
@@ -28796,7 +28796,7 @@ Snapdragon.prototype.compile = function(ast, options) {
   var compiled = this.compiler.compile(ast, this.options);
 
   // add non-enumerable compiler reference
-  D__git_packageInherit_node_modules_defineProperty(compiled, 'compiler', this.compiler);
+  defineProperty$3(compiled, 'compiler', this.compiler);
   return compiled;
 };
 
@@ -28804,7 +28804,7 @@ Snapdragon.prototype.compile = function(ast, options) {
  * Expose `Snapdragon`
  */
 
-var D__git_packageInherit_node_modules_snapdragon = Snapdragon;
+var snapdragon = Snapdragon;
 
 /**
  * Expose `Parser` and `Compiler`
@@ -28812,15 +28812,15 @@ var D__git_packageInherit_node_modules_snapdragon = Snapdragon;
 
 var Compiler_1 = compiler;
 var Parser_1 = parser$1;
-D__git_packageInherit_node_modules_snapdragon.Compiler = Compiler_1;
-D__git_packageInherit_node_modules_snapdragon.Parser = Parser_1;
+snapdragon.Compiler = Compiler_1;
+snapdragon.Parser = Parser_1;
 
 /**
  * Customize Snapdragon parser and renderer
  */
 
 function Braces(options) {
-  this.options = D__git_packageInherit_node_modules_extendShallow({}, options);
+  this.options = extendShallow$2({}, options);
 }
 
 /**
@@ -28831,7 +28831,7 @@ Braces.prototype.init = function(options) {
   if (this.isInitialized) return;
   this.isInitialized = true;
   var opts = utils_1.createOptions({}, this.options, options);
-  this.snapdragon = this.options.snapdragon || new D__git_packageInherit_node_modules_snapdragon(opts);
+  this.snapdragon = this.options.snapdragon || new snapdragon(opts);
   this.compiler = this.snapdragon.compiler;
   this.parser = this.snapdragon.parser;
 
@@ -28846,7 +28846,7 @@ Braces.prototype.init = function(options) {
    */
 
   utils_1.define(this.snapdragon, 'parse', function(pattern, options) {
-    var parsed = D__git_packageInherit_node_modules_snapdragon.prototype.parse.apply(this, arguments);
+    var parsed = snapdragon.prototype.parse.apply(this, arguments);
     this.parser.ast.input = pattern;
 
     var stack = this.parser.stack;
@@ -28966,7 +28966,7 @@ function braces$2(pattern, options) {
   }
 
   if (options && options.nodupes === true) {
-    arr = D__git_packageInherit_node_modules_arrayUnique(arr);
+    arr = arrayUnique(arr);
   }
 
   if (!disabled) {
@@ -28990,7 +28990,7 @@ function braces$2(pattern, options) {
  */
 
 braces$2.expand = function(pattern, options) {
-  return braces$2.create(pattern, D__git_packageInherit_node_modules_extendShallow({}, options, {expand: true}));
+  return braces$2.create(pattern, extendShallow$2({}, options, {expand: true}));
 };
 
 /**
@@ -29063,7 +29063,7 @@ braces$2.create = function(pattern, options) {
 
     // filter out duplicates if specified
     if (options && options.nodupes === true) {
-      arr = D__git_packageInherit_node_modules_arrayUnique(arr);
+      arr = arrayUnique(arr);
     }
 
     Object.defineProperty(arr, 'result', {
@@ -29104,8 +29104,8 @@ braces$2.makeRe = function(pattern, options) {
 
   function makeRe() {
     var arr = braces$2(pattern, options);
-    var opts = D__git_packageInherit_node_modules_extendShallow({strictErrors: false}, options);
-    return D__git_packageInherit_node_modules_toRegex(arr, opts);
+    var opts = extendShallow$2({strictErrors: false}, options);
+    return toRegex$2(arr, opts);
   }
 
   return memoize$1('makeRe', pattern, options, makeRe);
@@ -29227,13 +29227,13 @@ braces$2.cache = cache$3;
  * @type {Function}
  */
 
-var D__git_packageInherit_node_modules_braces = braces$2;
+var braces_1$1 = braces$2;
 
-var isExtendable$4 = function isExtendable(val) {
+var isExtendable$5 = function isExtendable(val) {
   return isPlainObject(val) || typeof val === 'function' || Array.isArray(val);
 };
 
-var D__git_packageInherit_node_modules_micromatch_node_modules_extendShallow = Object.assign || function(obj/*, objects*/) {
+var extendShallow$4 = Object.assign || function(obj/*, objects*/) {
   if (obj === null || typeof obj === 'undefined') {
     throw new TypeError('Cannot convert undefined or null to object');
   }
@@ -29247,7 +29247,7 @@ var D__git_packageInherit_node_modules_micromatch_node_modules_extendShallow = O
     }
     if (isObject$c(val)) {
       assign$5(obj, val);
-      D__git_packageInherit_node_modules_assignSymbols(obj, val);
+      assignSymbols(obj, val);
     }
   }
   return obj;
@@ -29274,7 +29274,7 @@ function toObject$3(str) {
 }
 
 function isObject$c(val) {
-  return (val && typeof val === 'object') || isExtendable$4(val);
+  return (val && typeof val === 'object') || isExtendable$5(val);
 }
 
 /**
@@ -29285,11 +29285,11 @@ function hasOwn$5(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
-var isExtendable$5 = function isExtendable(val) {
+var isExtendable$6 = function isExtendable(val) {
   return isPlainObject(val) || typeof val === 'function' || Array.isArray(val);
 };
 
-var D__git_packageInherit_node_modules_nanomatch_node_modules_extendShallow = Object.assign || function(obj/*, objects*/) {
+var extendShallow$5 = Object.assign || function(obj/*, objects*/) {
   if (obj === null || typeof obj === 'undefined') {
     throw new TypeError('Cannot convert undefined or null to object');
   }
@@ -29303,7 +29303,7 @@ var D__git_packageInherit_node_modules_nanomatch_node_modules_extendShallow = Ob
     }
     if (isObject$d(val)) {
       assign$6(obj, val);
-      D__git_packageInherit_node_modules_assignSymbols(obj, val);
+      assignSymbols(obj, val);
     }
   }
   return obj;
@@ -29330,7 +29330,7 @@ function toObject$4(str) {
 }
 
 function isObject$d(val) {
-  return (val && typeof val === 'object') || isExtendable$5(val);
+  return (val && typeof val === 'object') || isExtendable$6(val);
 }
 
 /**
@@ -30049,8 +30049,8 @@ function advanceTo(input, endChar) {
 function createTextRegex(pattern) {
   if (cached) return cached;
   var opts = {contains: true, strictClose: false};
-  var not = D__git_packageInherit_node_modules_regexNot.create(pattern, opts);
-  var re = D__git_packageInherit_node_modules_toRegex('^(?:[*]\\((?=.)|' + not + ')', opts);
+  var not = regexNot.create(pattern, opts);
+  var re = toRegex$2('^(?:[*]\\((?=.)|' + not + ')', opts);
   return (cached = re);
 }
 
@@ -30061,7 +30061,7 @@ function createTextRegex(pattern) {
 var not_1 = NOT_REGEX;
 parsers$1.not = not_1;
 
-var D__git_packageInherit_node_modules_fragmentCache = createCommonjsModule(function (module, exports) {
+var fragmentCache = createCommonjsModule(function (module, exports) {
 
 
 
@@ -30103,7 +30103,7 @@ FragmentCache.prototype = {
    */
 
   cache: function(cacheName) {
-    return this.caches[cacheName] || (this.caches[cacheName] = new D__git_packageInherit_node_modules_mapCache());
+    return this.caches[cacheName] || (this.caches[cacheName] = new mapCache());
   },
 
   /**
@@ -30184,9 +30184,9 @@ FragmentCache.prototype = {
 exports = module.exports = FragmentCache;
 });
 
-var cache$4 = new (D__git_packageInherit_node_modules_fragmentCache)();
+var cache$4 = new (fragmentCache)();
 
-var D__git_packageInherit_node_modules_isWindows = createCommonjsModule(function (module, exports) {
+var isWindows$1 = createCommonjsModule(function (module, exports) {
 /*!
  * is-windows <https://github.com/jonschlinkert/is-windows>
  *
@@ -30217,7 +30217,7 @@ var define$3 = (typeof Reflect !== 'undefined' && Reflect.defineProperty)
   ? Reflect.defineProperty
   : Object.defineProperty;
 
-var D__git_packageInherit_node_modules_nanomatch_node_modules_defineProperty = function defineProperty(obj, key, val) {
+var defineProperty$4 = function defineProperty(obj, key, val) {
   if (!isobject(obj) && typeof obj !== 'function' && !Array.isArray(obj)) {
     throw new TypeError('expected an object, function, or array');
   }
@@ -30226,7 +30226,7 @@ var D__git_packageInherit_node_modules_nanomatch_node_modules_defineProperty = f
     throw new TypeError('expected "key" to be a string');
   }
 
-  if (D__git_packageInherit_node_modules_isDescriptor(val)) {
+  if (isDescriptor(val)) {
     define$3(obj, key, val);
     return obj;
   }
@@ -30248,7 +30248,7 @@ var D__git_packageInherit_node_modules_nanomatch_node_modules_defineProperty = f
  * Released under the MIT License.
  */
 
-var D__git_packageInherit_node_modules_arrDiff = function diff(arr/*, arrays*/) {
+var arrDiff = function diff(arr/*, arrays*/) {
   var len = arguments.length;
   var idx = 0;
   while (++idx < len) {
@@ -30287,7 +30287,7 @@ function diffArray(one, two) {
   return arr;
 }
 
-var D__git_packageInherit_node_modules_object_pick = function pick(obj, keys) {
+var object_pick = function pick(obj, keys) {
   if (!isobject(obj) && typeof obj !== 'function') {
     return {};
   }
@@ -30314,7 +30314,7 @@ var D__git_packageInherit_node_modules_object_pick = function pick(obj, keys) {
 
 var toString$9 = Object.prototype.toString;
 
-var D__git_packageInherit_node_modules_nanomatch_node_modules_kindOf = function kindOf(val) {
+var kindOf$7 = function kindOf(val) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
@@ -30451,14 +30451,14 @@ var utils = module.exports;
  * Module dependencies
  */
 
-var isWindows = D__git_packageInherit_node_modules_isWindows();
+var isWindows = isWindows$1();
 
-utils.define = D__git_packageInherit_node_modules_nanomatch_node_modules_defineProperty;
-utils.diff = D__git_packageInherit_node_modules_arrDiff;
-utils.extend = D__git_packageInherit_node_modules_nanomatch_node_modules_extendShallow;
-utils.pick = D__git_packageInherit_node_modules_object_pick;
-utils.typeOf = D__git_packageInherit_node_modules_nanomatch_node_modules_kindOf;
-utils.unique = D__git_packageInherit_node_modules_arrayUnique;
+utils.define = defineProperty$4;
+utils.diff = arrDiff;
+utils.extend = extendShallow$5;
+utils.pick = object_pick;
+utils.typeOf = kindOf$7;
+utils.unique = arrayUnique;
 
 /**
  * Returns true if the given value is effectively an empty string
@@ -30492,20 +30492,20 @@ utils.last = function(arr, n) {
  */
 
 utils.instantiate = function(ast, options) {
-  var snapdragon;
+  var snapdragon$1;
   // if an instance was created by `.parse`, use that instance
   if (utils.typeOf(ast) === 'object' && ast.snapdragon) {
-    snapdragon = ast.snapdragon;
+    snapdragon$1 = ast.snapdragon;
   // if the user supplies an instance on options, use that instance
   } else if (utils.typeOf(options) === 'object' && options.snapdragon) {
-    snapdragon = options.snapdragon;
+    snapdragon$1 = options.snapdragon;
   // create a new instance
   } else {
-    snapdragon = new D__git_packageInherit_node_modules_snapdragon(options);
+    snapdragon$1 = new snapdragon(options);
   }
 
-  utils.define(snapdragon, 'parse', function(str, options) {
-    var parsed = D__git_packageInherit_node_modules_snapdragon.prototype.parse.call(this, str, options);
+  utils.define(snapdragon$1, 'parse', function(str, options) {
+    var parsed = snapdragon.prototype.parse.call(this, str, options);
     parsed.input = str;
 
     // escape unmatched brace/bracket/parens
@@ -30532,7 +30532,7 @@ utils.instantiate = function(ast, options) {
     return parsed;
   });
 
-  return snapdragon;
+  return snapdragon$1;
 };
 
 /**
@@ -31180,7 +31180,7 @@ nanomatch.all = function(str, patterns, options) {
  */
 
 nanomatch.not = function(list, patterns, options) {
-  var opts = D__git_packageInherit_node_modules_nanomatch_node_modules_extendShallow({}, options);
+  var opts = extendShallow$5({}, options);
   var ignore = opts.ignore;
   delete opts.ignore;
 
@@ -31234,7 +31234,7 @@ nanomatch.contains = function(str, patterns, options) {
     }
   }
 
-  var opts = D__git_packageInherit_node_modules_nanomatch_node_modules_extendShallow({}, options, {contains: true});
+  var opts = extendShallow$5({}, options, {contains: true});
   return nanomatch.any(str, patterns, opts);
 };
 
@@ -31381,7 +31381,7 @@ nanomatch.matcher = function matcher(pattern, options) {
  */
 
 nanomatch.capture = function(pattern, str, options) {
-  var re = nanomatch.makeRe(pattern, D__git_packageInherit_node_modules_nanomatch_node_modules_extendShallow({capture: true}, options));
+  var re = nanomatch.makeRe(pattern, extendShallow$5({capture: true}, options));
   var unixify = utils_1$1.unixify(options);
 
   function match() {
@@ -31431,7 +31431,7 @@ nanomatch.makeRe = function(pattern, options) {
   function makeRe() {
     var opts = utils_1$1.extend({wrap: false}, options);
     var result = nanomatch.create(pattern, opts);
-    var regex = D__git_packageInherit_node_modules_toRegex(result.output, opts);
+    var regex = toRegex$2(result.output, opts);
     utils_1$1.define(regex, 'result', result);
     return regex;
   }
@@ -31658,13 +31658,13 @@ nanomatch.cache = cache$4;
  * @type {Function}
  */
 
-var D__git_packageInherit_node_modules_nanomatch = nanomatch;
+var nanomatch_1 = nanomatch;
 
 /**
  * POSIX character classes
  */
 
-var D__git_packageInherit_node_modules_posixCharacterClasses = {
+var posixCharacterClasses = {
   alnum: 'a-zA-Z0-9',
   alpha: 'a-zA-Z',
   ascii: '\\x00-\\x7F',
@@ -31709,7 +31709,7 @@ var compilers$2 = function(brackets) {
         return this.emit('\\[::\\]', node);
       }
 
-      var val = D__git_packageInherit_node_modules_posixCharacterClasses[node.inner];
+      var val = posixCharacterClasses[node.inner];
       if (typeof val === 'undefined') {
         val = '[' + node.inner + ']';
       }
@@ -31784,13 +31784,13 @@ var last$1 = function(arr) {
 var createRegex = function(pattern, include) {
   if (cached$1) return cached$1;
   var opts = {contains: true, strictClose: false};
-  var not = D__git_packageInherit_node_modules_regexNot.create(pattern, opts);
+  var not = regexNot.create(pattern, opts);
   var re;
 
   if (typeof include === 'string') {
-    re = D__git_packageInherit_node_modules_toRegex('^(?:' + include + '|' + not + ')', opts);
+    re = toRegex$2('^(?:' + include + '|' + not + ')', opts);
   } else {
-    re = D__git_packageInherit_node_modules_toRegex(not, opts);
+    re = toRegex$2(not, opts);
   }
 
   return (cached$1 = re);
@@ -31911,8 +31911,8 @@ function parsers$2(brackets) {
         nodes: [open]
       });
 
-      D__git_packageInherit_node_modules_defineProperty(node, 'parent', prev);
-      D__git_packageInherit_node_modules_defineProperty(open, 'parent', node);
+      defineProperty$3(node, 'parent', prev);
+      defineProperty$3(open, 'parent', node);
       this.push('bracket', node);
       prev.nodes.push(node);
     })
@@ -32000,7 +32000,7 @@ function parsers$2(brackets) {
       }
 
       bracket.nodes.push(node);
-      D__git_packageInherit_node_modules_defineProperty(node, 'parent', bracket);
+      defineProperty$3(node, 'parent', bracket);
     });
 }
 
@@ -32028,7 +32028,7 @@ parsers_1.TEXT_REGEX = TEXT_REGEX_1;
  * Module dependencies
  */
 
-var debug$3 = D__git_packageInherit_node_modules_debug_src('expand-brackets');
+var debug$3 = src('expand-brackets');
 
 
 
@@ -32070,7 +32070,7 @@ function brackets(pattern, options) {
 
 brackets.match = function(arr, pattern, options) {
   arr = [].concat(arr);
-  var opts = D__git_packageInherit_node_modules_extendShallow({}, options);
+  var opts = extendShallow$2({}, options);
   var isMatch = brackets.matcher(pattern, opts);
   var len = arr.length;
   var idx = -1;
@@ -32161,8 +32161,8 @@ brackets.matcher = function(pattern, options) {
 
 brackets.makeRe = function(pattern, options) {
   var res = brackets.create(pattern, options);
-  var opts = D__git_packageInherit_node_modules_extendShallow({strictErrors: false}, options);
-  return D__git_packageInherit_node_modules_toRegex(res.output, opts);
+  var opts = extendShallow$2({strictErrors: false}, options);
+  return toRegex$2(res.output, opts);
 };
 
 /**
@@ -32202,13 +32202,13 @@ brackets.makeRe = function(pattern, options) {
  */
 
 brackets.create = function(pattern, options) {
-  var snapdragon = (options && options.snapdragon) || new D__git_packageInherit_node_modules_snapdragon(options);
-  compilers$2(snapdragon);
-  parsers_1(snapdragon);
+  var snapdragon$1 = (options && options.snapdragon) || new snapdragon(options);
+  compilers$2(snapdragon$1);
+  parsers_1(snapdragon$1);
 
-  var ast = snapdragon.parse(pattern, options);
+  var ast = snapdragon$1.parse(pattern, options);
   ast.input = pattern;
-  var res = snapdragon.compile(ast, options);
+  var res = snapdragon$1.compile(ast, options);
   res.input = pattern;
   return res;
 };
@@ -32225,7 +32225,7 @@ brackets.parsers = parsers_1;
  * @type {Function}
  */
 
-var D__git_packageInherit_node_modules_expandBrackets = brackets;
+var expandBrackets = brackets;
 
 /**
  * Extglob compilers
@@ -32246,7 +32246,7 @@ var compilers$3 = function(extglob) {
    * Use `expand-brackets` compilers
    */
 
-  extglob.use(D__git_packageInherit_node_modules_expandBrackets.compilers);
+  extglob.use(expandBrackets.compilers);
   extglob.compiler
 
     /**
@@ -32393,7 +32393,7 @@ var compilers$3 = function(extglob) {
     });
 };
 
-var D__git_packageInherit_node_modules_extglob_node_modules_defineProperty = function defineProperty(obj, prop, val) {
+var defineProperty$5 = function defineProperty(obj, prop, val) {
   if (typeof obj !== 'object' && typeof obj !== 'function') {
     throw new TypeError('expected an object or function.');
   }
@@ -32402,7 +32402,7 @@ var D__git_packageInherit_node_modules_extglob_node_modules_defineProperty = fun
     throw new TypeError('expected `prop` to be a string.');
   }
 
-  if (D__git_packageInherit_node_modules_isDescriptor(val) && ('set' in val || 'get' in val)) {
+  if (isDescriptor(val) && ('set' in val || 'get' in val)) {
     return Object.defineProperty(obj, prop, val);
   }
 
@@ -32424,7 +32424,7 @@ var utils_1$2 = createCommonjsModule(function (module) {
  */
 
 var utils = module.exports;
-var cache = utils.cache = new D__git_packageInherit_node_modules_fragmentCache();
+var cache = utils.cache = new fragmentCache();
 
 /**
  * Cast `val` to an array
@@ -32481,7 +32481,7 @@ utils.createKey = function(pattern, options) {
 
 utils.createRegex = function(str) {
   var opts = {contains: true, strictClose: false};
-  return D__git_packageInherit_node_modules_regexNot(str, opts);
+  return regexNot(str, opts);
 };
 });
 
@@ -32504,7 +32504,7 @@ function parsers$3(extglob) {
    * Use `expand-brackets` parsers
    */
 
-  extglob.use(D__git_packageInherit_node_modules_expandBrackets.parsers);
+  extglob.use(expandBrackets.parsers);
   extglob.parser.sets.paren = extglob.parser.sets.paren || [];
   extglob.parser
 
@@ -32540,10 +32540,10 @@ function parsers$3(extglob) {
         node.prefix = '@';
       }
 
-      D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(node, 'rest', this.input);
-      D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(node, 'parsed', parsed);
-      D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(node, 'parent', prev);
-      D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(open, 'parent', node);
+      defineProperty$5(node, 'rest', this.input);
+      defineProperty$5(node, 'parsed', parsed);
+      defineProperty$5(node, 'parent', prev);
+      defineProperty$5(open, 'parent', node);
 
       this.push('paren', node);
       prev.nodes.push(node);
@@ -32577,7 +32577,7 @@ function parsers$3(extglob) {
 
       node.prefix = parent.prefix;
       parent.nodes.push(node);
-      D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(node, 'parent', parent);
+      defineProperty$5(node, 'parent', parent);
     })
 
     /**
@@ -32656,8 +32656,8 @@ parsers_1$1.TEXT_REGEX = TEXT_REGEX_1$1;
  */
 
 function Extglob(options) {
-  this.options = D__git_packageInherit_node_modules_extendShallow({source: 'extglob'}, options);
-  this.snapdragon = this.options.snapdragon || new D__git_packageInherit_node_modules_snapdragon(this.options);
+  this.options = extendShallow$2({source: 'extglob'}, options);
+  this.snapdragon = this.options.snapdragon || new snapdragon(this.options);
   this.snapdragon.patterns = this.snapdragon.patterns || {};
   this.compiler = this.snapdragon.compiler;
   this.parser = this.snapdragon.parser;
@@ -32669,8 +32669,8 @@ function Extglob(options) {
    * Override Snapdragon `.parse` method
    */
 
-  D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(this.snapdragon, 'parse', function(str, options) {
-    var parsed = D__git_packageInherit_node_modules_snapdragon.prototype.parse.apply(this, arguments);
+  defineProperty$5(this.snapdragon, 'parse', function(str, options) {
+    var parsed = snapdragon.prototype.parse.apply(this, arguments);
     parsed.input = str;
 
     // escape unmatched brace/bracket/parens
@@ -32685,7 +32685,7 @@ function Extglob(options) {
     }
 
     // add non-enumerable parser reference
-    D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(parsed, 'parser', this.parser);
+    defineProperty$5(parsed, 'parser', this.parser);
     return parsed;
   });
 
@@ -32693,7 +32693,7 @@ function Extglob(options) {
    * Decorate `.parse` method
    */
 
-  D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(this, 'parse', function(ast, options) {
+  defineProperty$5(this, 'parse', function(ast, options) {
     return this.snapdragon.parse.apply(this.snapdragon, arguments);
   });
 
@@ -32701,7 +32701,7 @@ function Extglob(options) {
    * Decorate `.compile` method
    */
 
-  D__git_packageInherit_node_modules_extglob_node_modules_defineProperty(this, 'compile', function(ast, options) {
+  defineProperty$5(this, 'compile', function(ast, options) {
     return this.snapdragon.compile.apply(this.snapdragon, arguments);
   });
 
@@ -32787,7 +32787,7 @@ extglob$1.match = function(list, pattern, options) {
 
   // if no options were passed, uniquify results and return
   if (typeof options === 'undefined') {
-    return D__git_packageInherit_node_modules_arrayUnique(matches);
+    return arrayUnique(matches);
   }
 
   if (matches.length === 0) {
@@ -32799,7 +32799,7 @@ extglob$1.match = function(list, pattern, options) {
     }
   }
 
-  return options.nodupes !== false ? D__git_packageInherit_node_modules_arrayUnique(matches) : matches;
+  return options.nodupes !== false ? arrayUnique(matches) : matches;
 };
 
 /**
@@ -32869,7 +32869,7 @@ extglob$1.contains = function(str, pattern, options) {
     return pattern === str;
   }
 
-  var opts = D__git_packageInherit_node_modules_extendShallow({}, options, {contains: true});
+  var opts = extendShallow$2({}, options, {contains: true});
   opts.strictClose = false;
   opts.strictOpen = false;
   return extglob$1.isMatch(str, pattern, opts);
@@ -32959,7 +32959,7 @@ extglob$1.create = function(pattern, options) {
  */
 
 extglob$1.capture = function(pattern, str, options) {
-  var re = extglob$1.makeRe(pattern, D__git_packageInherit_node_modules_extendShallow({capture: true}, options));
+  var re = extglob$1.makeRe(pattern, extendShallow$2({capture: true}, options));
 
   function match() {
     return function(string) {
@@ -33005,10 +33005,10 @@ extglob$1.makeRe = function(pattern, options) {
   }
 
   function makeRe() {
-    var opts = D__git_packageInherit_node_modules_extendShallow({strictErrors: false}, options);
+    var opts = extendShallow$2({strictErrors: false}, options);
     if (opts.strictErrors === true) opts.strict = true;
     var res = extglob$1.create(pattern, opts);
-    return D__git_packageInherit_node_modules_toRegex(res.output, opts);
+    return toRegex$2(res.output, opts);
   }
 
   var regex = utils_1$2.memoize('makeRe', pattern, options, makeRe);
@@ -33041,14 +33041,14 @@ extglob$1.parsers = parsers_1$1;
  * @type {Function}
  */
 
-var D__git_packageInherit_node_modules_extglob = extglob$1;
+var extglob_1 = extglob$1;
 
 var compilers$4 = function(snapdragon) {
   var compilers = snapdragon.compiler.compilers;
   var opts = snapdragon.options;
 
   // register nanomatch compilers
-  snapdragon.use(D__git_packageInherit_node_modules_nanomatch.compilers);
+  snapdragon.use(nanomatch_1.compilers);
 
   // get references to some specific nanomatch compilers before they
   // are overridden by the extglob and/or custom compilers
@@ -33064,7 +33064,7 @@ var compilers$4 = function(snapdragon) {
   if (opts.extglob === false || opts.noext === true) {
     snapdragon.compiler.use(escapeExtglobs);
   } else {
-    snapdragon.use(D__git_packageInherit_node_modules_extglob.compilers);
+    snapdragon.use(extglob_1.compilers);
   }
 
   snapdragon.use(function() {
@@ -33136,7 +33136,7 @@ var parsers$4 = function(snapdragon) {
   var parsers = snapdragon.parser.parsers;
 
   // register nanomatch parsers
-  snapdragon.use(D__git_packageInherit_node_modules_nanomatch.parsers);
+  snapdragon.use(nanomatch_1.parsers);
 
   // get references to some specific nanomatch parsers before they
   // are overridden by the extglob and/or parsers
@@ -33148,7 +33148,7 @@ var parsers$4 = function(snapdragon) {
   var dot = parsers.dot;
 
   // register extglob parsers
-  snapdragon.use(D__git_packageInherit_node_modules_extglob.parsers);
+  snapdragon.use(extglob_1.parsers);
 
   // custom micromatch parsers
   snapdragon.parser
@@ -33189,18 +33189,18 @@ var parsers$4 = function(snapdragon) {
  */
 
 function textRegex(pattern) {
-  var notStr = D__git_packageInherit_node_modules_regexNot.create(pattern, {contains: true, strictClose: false});
+  var notStr = regexNot.create(pattern, {contains: true, strictClose: false});
   var prefix = '(?:[\\^]|\\\\|';
-  return D__git_packageInherit_node_modules_toRegex(prefix + notStr + ')', {strictClose: false});
+  return toRegex$2(prefix + notStr + ')', {strictClose: false});
 }
 
-var cache$5 = new (D__git_packageInherit_node_modules_fragmentCache)();
+var cache$5 = new (fragmentCache)();
 
 var define$4 = (typeof Reflect !== 'undefined' && Reflect.defineProperty)
   ? Reflect.defineProperty
   : Object.defineProperty;
 
-var D__git_packageInherit_node_modules_micromatch_node_modules_defineProperty = function defineProperty(obj, key, val) {
+var defineProperty$6 = function defineProperty(obj, key, val) {
   if (!isobject(obj) && typeof obj !== 'function' && !Array.isArray(obj)) {
     throw new TypeError('expected an object, function, or array');
   }
@@ -33209,7 +33209,7 @@ var D__git_packageInherit_node_modules_micromatch_node_modules_defineProperty = 
     throw new TypeError('expected "key" to be a string');
   }
 
-  if (D__git_packageInherit_node_modules_isDescriptor(val)) {
+  if (isDescriptor(val)) {
     define$4(obj, key, val);
     return obj;
   }
@@ -33226,7 +33226,7 @@ var D__git_packageInherit_node_modules_micromatch_node_modules_defineProperty = 
 
 var toString$a = Object.prototype.toString;
 
-var D__git_packageInherit_node_modules_micromatch_node_modules_kindOf = function kindOf(val) {
+var kindOf$8 = function kindOf(val) {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
@@ -33364,12 +33364,12 @@ var utils = module.exports;
  */
 
 
-utils.define = D__git_packageInherit_node_modules_micromatch_node_modules_defineProperty;
-utils.diff = D__git_packageInherit_node_modules_arrDiff;
-utils.extend = D__git_packageInherit_node_modules_micromatch_node_modules_extendShallow;
-utils.pick = D__git_packageInherit_node_modules_object_pick;
-utils.typeOf = D__git_packageInherit_node_modules_micromatch_node_modules_kindOf;
-utils.unique = D__git_packageInherit_node_modules_arrayUnique;
+utils.define = defineProperty$6;
+utils.diff = arrDiff;
+utils.extend = extendShallow$4;
+utils.pick = object_pick;
+utils.typeOf = kindOf$8;
+utils.unique = arrayUnique;
 
 /**
  * Returns true if the platform is windows, or `path.sep` is `\\`.
@@ -33387,20 +33387,20 @@ utils.isWindows = function() {
  */
 
 utils.instantiate = function(ast, options) {
-  var snapdragon;
+  var snapdragon$1;
   // if an instance was created by `.parse`, use that instance
   if (utils.typeOf(ast) === 'object' && ast.snapdragon) {
-    snapdragon = ast.snapdragon;
+    snapdragon$1 = ast.snapdragon;
   // if the user supplies an instance on options, use that instance
   } else if (utils.typeOf(options) === 'object' && options.snapdragon) {
-    snapdragon = options.snapdragon;
+    snapdragon$1 = options.snapdragon;
   // create a new instance
   } else {
-    snapdragon = new D__git_packageInherit_node_modules_snapdragon(options);
+    snapdragon$1 = new snapdragon(options);
   }
 
-  utils.define(snapdragon, 'parse', function(str, options) {
-    var parsed = D__git_packageInherit_node_modules_snapdragon.prototype.parse.apply(this, arguments);
+  utils.define(snapdragon$1, 'parse', function(str, options) {
+    var parsed = snapdragon.prototype.parse.apply(this, arguments);
     parsed.input = str;
 
     // escape unmatched brace/bracket/parens
@@ -33427,7 +33427,7 @@ utils.instantiate = function(ast, options) {
     return parsed;
   });
 
-  return snapdragon;
+  return snapdragon$1;
 };
 
 /**
@@ -34003,7 +34003,7 @@ micromatch$1.all = function(str, patterns, options) {
  */
 
 micromatch$1.not = function(list, patterns, options) {
-  var opts = D__git_packageInherit_node_modules_micromatch_node_modules_extendShallow({}, options);
+  var opts = extendShallow$4({}, options);
   var ignore = opts.ignore;
   delete opts.ignore;
 
@@ -34058,7 +34058,7 @@ micromatch$1.contains = function(str, patterns, options) {
     }
   }
 
-  var opts = D__git_packageInherit_node_modules_micromatch_node_modules_extendShallow({}, options, {contains: true});
+  var opts = extendShallow$4({}, options, {contains: true});
   return micromatch$1.any(str, patterns, opts);
 };
 
@@ -34199,7 +34199,7 @@ micromatch$1.matcher = function matcher(pattern, options) {
  */
 
 micromatch$1.capture = function(pattern, str, options) {
-  var re = micromatch$1.makeRe(pattern, D__git_packageInherit_node_modules_micromatch_node_modules_extendShallow({capture: true}, options));
+  var re = micromatch$1.makeRe(pattern, extendShallow$4({capture: true}, options));
   var unixify = utils_1$3.unixify(options);
 
   function match() {
@@ -34251,7 +34251,7 @@ micromatch$1.makeRe = function(pattern, options) {
       return obj.output;
     });
 
-    var regex = D__git_packageInherit_node_modules_toRegex(output.join('|'), options);
+    var regex = toRegex$2(output.join('|'), options);
     Object.defineProperty(regex, 'result', {
       configurable: true,
       enumerable: false,
@@ -34289,7 +34289,7 @@ micromatch$1.braces = function(pattern, options) {
     if (options && options.nobrace === true || !/\{.*\}/.test(pattern)) {
       return utils_1$3.arrayify(pattern);
     }
-    return D__git_packageInherit_node_modules_braces(pattern, options);
+    return braces_1$1(pattern, options);
   }
 
   return memoize$3('braces', pattern, options, expand);
@@ -34301,7 +34301,7 @@ micromatch$1.braces = function(pattern, options) {
  */
 
 micromatch$1.braceExpand = function(pattern, options) {
-  var opts = D__git_packageInherit_node_modules_micromatch_node_modules_extendShallow({}, options, {expand: true});
+  var opts = extendShallow$4({}, options, {expand: true});
   return micromatch$1.braces(pattern, opts);
 };
 
@@ -34539,7 +34539,7 @@ micromatch$1.caches = cache$5.caches;
  * @type {Function}
  */
 
-var D__git_packageInherit_node_modules_micromatch = micromatch$1;
+var micromatch_1$1 = micromatch$1;
 
 var findYarnWorkspaceRoot = findWorkspaceRoot;
 
@@ -34562,7 +34562,7 @@ function findWorkspaceRoot(initial) {
 
     if (workspaces) {
       const relativePath = path__default['default'].relative(current, initial);
-      if (relativePath === '' || D__git_packageInherit_node_modules_micromatch([relativePath], workspaces).length > 0) {
+      if (relativePath === '' || micromatch_1$1([relativePath], workspaces).length > 0) {
         return current;
       } else {
         return null;
@@ -34583,8 +34583,8 @@ function extractWorkspaces(manifest) {
 
 function readPackageJSON(dir) {
   const file = path__default['default'].join(dir, 'package.json');
-  if (D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib.pathExistsSync(file)) {
-    return D__git_packageInherit_node_modules_findYarnWorkspaceRoot_node_modules_fsExtra_lib.readJsonSync(file);
+  if (lib.pathExistsSync(file)) {
+    return lib.readJsonSync(file);
   }
   return null;
 }
@@ -36421,7 +36421,7 @@ var register = function() {
   var r = commonjsRequire, e = 'extensions';
   r[e]['.json5'] = function(m, f) {
     /*eslint no-sync:0*/
-    m.exports = D__git_packageInherit_node_modules_jju.parse(fs__default['default'].readFileSync(f, 'utf8'));
+    m.exports = jju.parse(fs__default['default'].readFileSync(f, 'utf8'));
   };
 };
 
@@ -36435,7 +36435,7 @@ var patch_JSON_parse = function() {
       return _parse(text, rev)
     } catch(err) {
       // this call should always throw
-      D__git_packageInherit_node_modules_jju.parse(text, {
+      jju.parse(text, {
         mode: 'json',
         legacy: true,
         reviver: rev,
@@ -36464,7 +36464,7 @@ var utils$6 = {
 	middleware: middleware
 };
 
-var D__git_packageInherit_node_modules_jju = createCommonjsModule(function (module) {
+var jju = createCommonjsModule(function (module) {
 module.exports.__defineGetter__('parse', function() {
 	return parse_1$2.parse
 });
@@ -36505,7 +36505,7 @@ var __importDefault = (commonjsGlobal && commonjsGlobal.__importDefault) || func
 Object.defineProperty(exports, "__esModule", { value: true });
 const find_up_1 = __importDefault(findUp);
 const path_1 = __importDefault(path__default['default']);
-const jju_1 = __importDefault(D__git_packageInherit_node_modules_jju);
+const jju_1 = __importDefault(jju);
 const fs_1 = __importDefault(fs__default['default']);
 function getRushWorkspaces(cwd) {
     try {
@@ -36623,7 +36623,7 @@ exports.getPackageInfos = getPackageInfos;
 const RE_SCOPED = /^(@[^/]+\/[^/@]+)(?:\/([^@]+))?(?:@([\s\S]+))?/;
 const RE_NORMAL = /^([^/@]+)(?:\/([^@]+))?(?:@([\s\S]+))?/;
 
-var D__git_packageInherit_node_modules_parsePackageName = function (input) {
+var parsePackageName = function (input) {
   if (typeof input !== 'string') {
     throw new TypeError('Expected a string')
   }
@@ -36643,6 +36643,10 @@ var D__git_packageInherit_node_modules_parsePackageName = function (input) {
 
 function generateInheritedPackageJson(cwd) {
     const allPackages = getPackageInfos_1.getPackageInfos(cwd);
+    const [rootPackageInfo] = getWorkspacePackageInfo_1.getWorkspacePackageInfo([cwd]);
+    if (rootPackageInfo) {
+        allPackages[rootPackageInfo.name] = rootPackageInfo.packageJson;
+    }
     const modifiedPackages = [];
     const keys = ["devDependencies", "dependencies", "scripts"];
     for (const [pkg, info] of Object.entries(allPackages)) {
@@ -36674,7 +36678,7 @@ function generateInheritedPackageJson(cwd) {
     return { allPackages, modifiedPackages };
 }
 function resolveInRepo(pkg, specifier, allPackages) {
-    const parsedInfo = D__git_packageInherit_node_modules_parsePackageName(specifier);
+    const parsedInfo = parsePackageName(specifier);
     if (parsedInfo.name === ".") {
         parsedInfo.name = pkg;
     }
@@ -36688,6 +36692,8 @@ function shouldUpdate(mine, theirs) {
         return false;
     }
     let result = false;
+    if (!mine)
+        mine = {};
     for (const [key, value] of Object.entries(theirs)) {
         if (mine[key] !== value) {
             result = true;
