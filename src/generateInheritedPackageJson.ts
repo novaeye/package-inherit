@@ -15,7 +15,7 @@ export function generateInheritedPackageJson(cwd: string) {
   }
 
   const modifiedPackages: string[] = [];
-  const keys = ["devDependencies", "dependencies", "scripts"];
+  const keys = ["scripts", "dependencies", "devDependencies"];
 
   for (const [pkg, info] of Object.entries(allPackages)) {
     // workspace-tools typings are not comprehensive about what is possible, so we force cast it
@@ -41,7 +41,11 @@ export function generateInheritedPackageJson(cwd: string) {
 
       for (const key of keys) {
         if (shouldUpdate(info[key], mergedInheritInfo[key])) {
-          info[key] = { ...(info[key] as any), ...mergedInheritInfo[key] };
+          const element = info[key] = { ...info[key], ...mergedInheritInfo[key] };
+          info[key] = Object.keys(element).sort().reduce((e, k) => {
+            e[k] = element[k];
+            return e;
+          }, {});
           modifiedPackages.push(pkg);
         }
       }
